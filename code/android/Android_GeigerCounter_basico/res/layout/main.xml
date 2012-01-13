@@ -50,21 +50,7 @@
     	android:layout_width="fill_parent"
       	android:layout_height="wrap_content"
        	android:orientation="horizontal"
-       	android:gravity="center" > 
-    	<Button
-    	    android:id="@+id/record_button"
-    	    android:layout_width="0dip"
-          	android:layout_height="wrap_content"
-           	android:layout_weight="1"
-           	android:text="@string/record_button"
-    	    />
-    	<Button
-    	    android:id="@+id/continue_button"
-    	    android:layout_width="0dip"
-          	android:layout_height="wrap_content"
-          	android:layout_weight="1"
-          	android:text="@string/pause_button"
-    	    />
+       	android:gravity="center" >
     </LinearLayout>
     <TextView
         android:id="@+id/raw_display"
@@ -79,4 +65,32 @@
           	android:layout_height="wrap_content"
            	android:text="seq"
            	android:textSize="10sp" />
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout1"
+                android:layout_width="match_parent"
+                android:layout_height="140dp"
+                android:orientation="horizontal" >
+
+                <Button
+                    android:id="@+id/record_button"
+                    android:layout_width="120dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/record_button" 
+                    android:layout_marginTop="2dip"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentBottom="true"/>
+
+                <Button
+                    android:id="@+id/continue_button"
+                    android:layout_width="120dip"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/pause_button" 
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    />
+            </RelativeLayout>
+
 </LinearLayout>
