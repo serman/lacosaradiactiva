@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical"
+    android:gravity="center_horizontal">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:layout_marginTop="20dip"
+        android:layout_marginBottom="20dip" >
+
+        
+        <LinearLayout
+       		android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:orientation="horizontal"
+        	android:gravity="right" > 
+
+       		<TextView 
+       		    android:id="@+id/current_cpm_display"
+       		    android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="---"
+            	android:textSize="20sp"
+            	android:layout_marginRight="10dip" />
+       		<TextView 
+       		    android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="@string/counts_per_minute"
+            	android:textSize="20sp" />
+       	</LinearLayout>            
+        <TextView 
+            android:id="@+id/current_usv_display"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="---"
+            android:textSize="60sp"
+            />
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/microsievert_hour"
+            android:textSize="30sp" />
+    </LinearLayout>
+    <LinearLayout
+    	android:layout_width="fill_parent"
+      	android:layout_height="wrap_content"
+       	android:orientation="horizontal"
+       	android:gravity="center" > 
+    	<Button
+    	    android:id="@+id/record_button"
+    	    android:layout_width="0dip"
+          	android:layout_height="wrap_content"
+           	android:layout_weight="1"
+           	android:text="@string/record_button"
+    	    />
+    	<Button
+    	    android:id="@+id/continue_button"
+    	    android:layout_width="0dip"
+          	android:layout_height="wrap_content"
+          	android:layout_weight="1"
+          	android:text="@string/pause_button"
+    	    />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/raw_display"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        android:text="Raw data to come..."
+         />
+            <TextView 
+       	    android:id="@+id/seq_num"
+       	    android:layout_width="fill_parent"
+          	android:layout_height="wrap_content"
+           	android:text="seq"
+           	android:textSize="10sp" />
+</LinearLayout>
