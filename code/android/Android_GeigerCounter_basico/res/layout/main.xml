@@ -32,14 +32,41 @@
             	android:layout_height="wrap_content"
             	android:text="@string/counts_per_minute"
             	android:textSize="20sp" />
-       	</LinearLayout>            
+       	</LinearLayout>  
         <TextView 
-            android:id="@+id/current_usv_display"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="---"
-            android:textSize="60sp"
-            />
+           	android:id="@+id/current_usv_display"
+           	android:layout_width="wrap_content"
+           	android:layout_height="wrap_content"
+           	android:text="---"
+           	android:textSize="60sp"
+           	android:layout_weight="1"
+           	android:textColor="#00cc33"
+        />
+        <LinearLayout
+       	    android:layout_width="wrap_content"
+        	android:layout_height="wrap_content"
+        	android:orientation="horizontal"
+        	android:gravity="right"
+       	    >        
+       	    <TextView 
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="@string/average_10_min"
+            	android:textSize="10sp"
+            	android:layout_marginLeft="10dip"
+            	android:layout_weight="1"
+            	/>
+        	<TextView 
+            	android:id="@+id/average_usv_display"
+            	android:layout_width="wrap_content"
+            	android:layout_height="wrap_content"
+            	android:text="---"
+            	android:textSize="30sp"
+            	android:layout_marginLeft="10dip"
+            	android:layout_weight="1"
+            	android:textColor="#00cccc"
+            	/>
+       	</LinearLayout>
         <TextView 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

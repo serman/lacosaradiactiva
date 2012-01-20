@@ -6,5 +6,6 @@
     <string name="counts_per_minute">cpm</string>
     <string name="record_button">record</string>
     <string name="pause_button">pause</string>
+    <string name="average_10_min">Avg</string>
 
 </resources>
