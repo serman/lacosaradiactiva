@@ -13,6 +13,7 @@ public class GeigerModel extends Observable  {
 		private int size = 0;
 		private final int maxSize;
 		private float average =0.0f;
+		private float longtermAverage=0.0f;
 		
 		private Q(int maxSize){
 			super();
@@ -51,11 +52,14 @@ public class GeigerModel extends Observable  {
 	private int cpm1min = 0;		 // Current measure in cpm, averaged 1 min
 	private float usv1min = 0.0f;    // Current measure in uSv/h, averaged 1 min
 	private int   seqNum = 0;
-	
+	private float usv60min=0.0f;
 	
 	private final Q q = new Q(MAX_QUEUE_SIZE); 
 	
+	private final Q q_long_term = new Q(60); 
+	
 	private LinkedList<Integer> q1;			// FIFO to hold cpm measures got from Arduino
+	
 	
 	public GeigerModel(){
 		super();
@@ -89,10 +93,20 @@ public class GeigerModel extends Observable  {
 
 		cpm1min = (int) (60 * averageCount / MainActivity.SAMPLE_INTERVAL);
 		usv1min = cpm1min * MainActivity.CONVERSION_FACTOR;
+		
+		if(seqNum % (60/MainActivity.SAMPLE_INTERVAL) ==0){ //long term value each minute
+			q_long_term.add(cpm1min);
+			usv60min = q_long_term.getAverage() * MainActivity.CONVERSION_FACTOR; 
+			Log.d("qq", "media 60 min"+ usv60min);			
+		}
+		
+		
+		
 		setChanged();
 		notifyObservers();
 	}
 	
+
 
 	
 
