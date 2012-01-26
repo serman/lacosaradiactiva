@@ -20,7 +20,7 @@ public class RandomGenerator implements Runnable {
 		int seq=0;;
 		while (true){
 			// Set "faked" values
-			count = random.nextInt(3);
+			count = random.nextInt(2);
 			Log.d(TAG,"Random cpm = "+count);
 			seq ++;
 			Log.d(TAG,"seq = "+seq);

@@ -6,19 +6,30 @@
     android:gravity="center_horizontal">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >"
+    
+    <com.dofideas.geiger2.BarView
+        android:id="@+id/bar_display"
+        android:layout_width="50dp"
+        android:layout_height="fill_parent"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="10dp" />
+    	    
+    <LinearLayout
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:gravity="center_horizontal"
         android:layout_marginTop="20dip"
         android:layout_marginBottom="20dip" >
-
         
         <LinearLayout
        		android:layout_width="fill_parent"
         	android:layout_height="wrap_content"
         	android:orientation="horizontal"
-        	android:gravity="right" > 
+        	android:gravity="center_horizontal" > 
 
        		<TextView 
        		    android:id="@+id/current_cpm_display"
@@ -73,6 +84,9 @@
             android:text="@string/microsievert_hour"
             android:textSize="30sp" />
     </LinearLayout>
+    
+    </LinearLayout>   
+    
     <LinearLayout
     	android:layout_width="fill_parent"
       	android:layout_height="wrap_content"
@@ -93,17 +107,10 @@
           	android:text="@string/pause_button"
     	    />
     </LinearLayout>
-    <TextView
-        android:id="@+id/raw_display"
+    <TextView 
+        android:id="@+id/seq_num"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:text="Raw data to come..."
-         />
-            <TextView 
-       	    android:id="@+id/seq_num"
-       	    android:layout_width="fill_parent"
-          	android:layout_height="wrap_content"
-           	android:text="seq"
-           	android:textSize="10sp" />
+      	android:layout_height="wrap_content"
+       	android:text="seq"
+        android:textSize="10sp" />
 </LinearLayout>

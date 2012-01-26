@@ -1,6 +1,8 @@
 package com.dofideas.geiger2;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Observable;
 
 import android.util.Log;
@@ -54,7 +56,7 @@ public class GeigerModel extends Observable  {
 	static final float SAMPLE_INTERVAL = 0.500f;    // (secs) Hardcoded. TODO: make configurable?
 	private static final int INTEGRATION_INTERVAL = 60; // In seconds
 	private static final int MAX_QUEUE_SIZE = (int) (INTEGRATION_INTERVAL / SAMPLE_INTERVAL);  // Primary queue 
-	private static final int MAX_QUEUE_SIZE_2 = 10;   // Num of intervals averaged, for secondary queue
+	static final int MAX_QUEUE_SIZE_2 = 10;   // Num of intervals averaged, for secondary queue
 	
 	
 	private int cpm1min = 0;		 // Current measure in cpm, averaged 1 min

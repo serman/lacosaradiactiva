@@ -30,7 +30,7 @@ public class MainActivity extends Activity implements Runnable,Observer {
 	private static final String TAG = "MAIN";
 	
 	private static final String ACTION_USB_PERMISSION = "com.dofideas.geiger.USB_PERMISSION";
-
+	
 
 	
 	// View attributes
@@ -38,6 +38,7 @@ public class MainActivity extends Activity implements Runnable,Observer {
 	private TextView currentCpmDisplay;
 	private TextView seqDisplay;
 	private TextView averageUsvDisplay;
+	private BarView  barDisplay;
 	
 	// Reader thread and run() function
 	private final Handler handler = new Handler();
@@ -83,6 +84,7 @@ public class MainActivity extends Activity implements Runnable,Observer {
         currentCpmDisplay = (TextView) findViewById(R.id.current_cpm_display);
         seqDisplay = (TextView) findViewById(R.id.seq_num);
         averageUsvDisplay = (TextView) findViewById(R.id.average_usv_display);
+        barDisplay = (BarView) findViewById(R.id.bar_display);
         
         // USB management
         usbManager = UsbManager.getInstance(this);
@@ -105,9 +107,9 @@ public class MainActivity extends Activity implements Runnable,Observer {
 			}
         });  
         
-        // Register this in model
+        // Register in model
         model.addObserver(this);
-        
+        model.addObserver(barDisplay);
     }
     
 
@@ -141,7 +143,7 @@ public class MainActivity extends Activity implements Runnable,Observer {
 		} else {
 			Log.d(TAG, "onResume() : accessory is null");
 			//TODO: For testing purposes, we start here the random generator
-			//startRandomGenerator();
+			startRandomGenerator();
 		}
     }
     
