@@ -33,15 +33,13 @@ public class MainActivity extends Activity implements Runnable,Observer {
 	
 	private static final String ACTION_USB_PERMISSION = "com.dofideas.geiger.USB_PERMISSION";
 
-	static final float SAMPLE_INTERVAL = 0.500f;    // (secs) Hardcoded. TODO: make configurable?
-	static final float CONVERSION_FACTOR = (float) 0.00812037037037;		// Geiger Tube Conversion Factor. Hardcoded: TODO: make configurable?
-	// Conversion factor from manufacturer http://www.cooking-hacks.com/index.php/documentation/tutorials/geiger-counter-arduino-radiation-sensor-board
-	// J305beta Geiger Tube - North Optic
+
 	
 	// View attributes
 	private TextView currentUsvDisplay;
 	private TextView currentCpmDisplay;
 	private TextView seqDisplay;
+	private TextView averageUsvDisplay;
 	
 	private TextView lonDisplay;
 	// Reader thread and run() function
@@ -118,7 +116,12 @@ public class MainActivity extends Activity implements Runnable,Observer {
         currentUsvDisplay = (TextView) findViewById(R.id.current_usv_display);
         currentCpmDisplay = (TextView) findViewById(R.id.current_cpm_display);
         seqDisplay = (TextView) findViewById(R.id.seq_num);
+
         lonDisplay = (TextView) findViewById(R.id.gps_lon);
+
+        averageUsvDisplay = (TextView) findViewById(R.id.average_usv_display);
+        
+//>>>>>>> master
         // USB management
         usbManager = UsbManager.getInstance(this);
         Log.d(TAG,"onCreate() : usbManager = "+ usbManager);
@@ -198,7 +201,7 @@ public class MainActivity extends Activity implements Runnable,Observer {
 		} else {
 			Log.d(TAG, "onResume() : accessory is null");
 			//TODO: For testing purposes, we start here the random generator
-			// startRandomGenerator();
+			//startRandomGenerator();
 		}
     }
     
@@ -374,10 +377,13 @@ public class MainActivity extends Activity implements Runnable,Observer {
 		int cpm1min = model.getCpm1min();
 		int seqNum = model.getSeqNum();
 		float usv1min = model.getUsv1min();
+		float usv10min = model.getUsv10min();
+		
 		
 		currentCpmDisplay.setText(""+cpm1min);		
 		seqDisplay.setText(""+seqNum);
 		lonDisplay.setText("lon:"+mGeopos.getLongitude());
 		currentUsvDisplay.setText(String.format("%.2f",usv1min));
+		averageUsvDisplay.setText(String.format("%.2f",usv10min));
 	}
 }

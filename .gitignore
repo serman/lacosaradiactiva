@@ -1,0 +1,10 @@
+code/android/Android_GeigerCounter_basico/bin/
+code/android/Android_GeigerCounter_basico/gen/
+## generic files to ignore
+*~
+*.lock
+*.DS_Store
+*.swp
+*.out
+*.class
+
