@@ -49,6 +49,10 @@ public class MainActivity extends Activity implements Runnable,Observer {
 	private ParcelFileDescriptor fileDescriptor;
 	private FileInputStream inputStream;
 	
+	//DataRecorder
+	private DataRecorder mRecorder;
+	private Button rec;
+	private boolean state_recording=false;
 	// Broadcast Receiver
 	private final BroadcastReceiver bcastReceiver = new BroadcastReceiver(){
 		@Override
@@ -68,7 +72,9 @@ public class MainActivity extends Activity implements Runnable,Observer {
 	};
 	
 	// Model
-	private final GeigerModel model = new GeigerModel(); 
+	private final GeigerModel model = new GeigerModel();
+
+	 
 	
 	
     /** Called when the activity is first created. */
@@ -94,19 +100,40 @@ public class MainActivity extends Activity implements Runnable,Observer {
         Log.d(TAG,"onCreate() : bcastReceiver registered :"+bcastReceiver);
                         
         // TODO: temp test: trigger ACTION_USB_PERMISSION from buttom
-        Button rec = (Button) findViewById(R.id.record_button);
+        rec = (Button) findViewById(R.id.record_button);
         rec.setOnClickListener(new OnClickListener(){
-
 			public void onClick(View v) {
 				Log.d(TAG,"onClick()");
-				Intent mIntent = new Intent();
-				mIntent.setAction(UsbManager.ACTION_USB_ACCESSORY_DETACHED);
-				sendBroadcast(mIntent);
+			//	Intent mIntent = new Intent();
+			//	mIntent.setAction(UsbManager.ACTION_USB_ACCESSORY_DETACHED);
+			//	sendBroadcast(mIntent);
+				
+				state_recording=!state_recording;
+				
+				if(state_recording){ //they clicked and now it is recording
+					if(mRecorder.open()==false){
+						state_recording=false;
+					}
+					else
+						rec.setText("Stop Record");									
+				}
+				else{
+					rec.setText("Record");
+					mRecorder.closeFile();
+				}
+				
+				
+				
+				
 			}
         });  
         
         // Register this in model
         model.addObserver(this);
+        
+        mRecorder = new DataRecorder(this);
+        //mRecorder.open();
+        
         
     }
     
@@ -155,6 +182,11 @@ public class MainActivity extends Activity implements Runnable,Observer {
     protected void onPause() {
     	Log.d(TAG,"onPause()");
     	super.onPause();
+    	if(state_recording){
+    		state_recording=false;
+    		mRecorder.closeFile();
+    		rec.setText("record");
+    	}
     }
     
     @Override
@@ -166,6 +198,7 @@ public class MainActivity extends Activity implements Runnable,Observer {
     	//	the app from launcher without problems.
     	closeAccessory();
     	super.onDestroy();
+    	mRecorder.closeFile();
     }
     
     private void openAccessory(UsbAccessory accessory){
@@ -287,9 +320,16 @@ public class MainActivity extends Activity implements Runnable,Observer {
 		// Call updateViews from Main thread
 		handler.post(new Runnable(){
 			public void run() {
-				updateViews();				
+				updateViews();	
+				if(state_recording)
+					recordValues();
 			}});
 		
+	}
+	
+	private void recordValues(){
+		//if(model.getSeqNum())
+			mRecorder.addData(model.getCpm1min(), model.getSeqNum());		
 	}
 	
 	private void updateViews(){
