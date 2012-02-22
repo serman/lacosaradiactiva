@@ -15,6 +15,7 @@ public class GeigerModel extends Observable  {
 		private int size = 0;
 		private final int maxSize;
 		private float average =0.0f;
+		private float longtermAverage=0.0f;
 		
 		private Q(int maxSize){
 			super();
@@ -51,21 +52,36 @@ public class GeigerModel extends Observable  {
 	// Conversion factor from manufacturer http://www.cooking-hacks.com/index.php/documentation/tutorials/geiger-counter-arduino-radiation-sensor-board
 	// J305beta Geiger Tube - North Optic
 	private static final String TAG = "MODEL";
+
+
+
+
+	private int cpm1min = 0;		 // Current measure in cpm, averaged 1 min
+	private float usv1min = 0.0f;    // Current measure in uSv/h, averaged 1 min
+	private int cpm10min = 0;
+	private float usv10min = 0.0f;
+	private int   seqNum = 0;
+	private float usv60min=0.0f;
+	private int counter = 0;		// Counter to trigger secondary queue
+
+
+	
+
 	static final float SAMPLE_INTERVAL = 0.500f;    // (secs) Hardcoded. TODO: make configurable?
 	private static final int INTEGRATION_INTERVAL = 60; // In seconds
+	//private static final int MAX_QUEUE_SIZE = (int) (60 / MainActivity.SAMPLE_INTERVAL); // Correspond to 1 min
 	private static final int MAX_QUEUE_SIZE = (int) (INTEGRATION_INTERVAL / SAMPLE_INTERVAL);  // Primary queue 
 	private static final int MAX_QUEUE_SIZE_2 = 10;   // Num of intervals averaged, for secondary queue
 	
-	
-	private int cpm1min = 0;		 // Current measure in cpm, averaged 1 min
-	private int cpm10min = 0;
-	private float usv1min = 0.0f;    // Current measure in uSv/h, averaged 1 min
-	private float usv10min = 0.0f;
-	private int seqNum = 0;
-	private int counter = 0;		// Counter to trigger secondary queue
-	
+
+
+	private final Q q_long_term = new Q(60); 
+	private LinkedList<Integer> q1;			// FIFO to hold cpm measures got from Arduino
 	private final Q q = new Q(MAX_QUEUE_SIZE);  // Main queue for holding primary measured raw values
 	private final Q q2 = new Q(MAX_QUEUE_SIZE_2);  // Secondary queue for calculating average (N measures)
+
+
+
 	
 	public GeigerModel(){
 		super();
@@ -100,26 +116,34 @@ public class GeigerModel extends Observable  {
 	}
 	
 	private void calculateModel(){
+
 		float averageCount = q.getAverage();
-		Log.d(TAG,"calculateModel() : averageCount = "+averageCount);
+
 		cpm1min = (int) (60 * averageCount / SAMPLE_INTERVAL);
-		Log.d(TAG,"calculateModel() : cpm1min = "+cpm1min);
 		usv1min = cpm1min * CONVERSION_FACTOR;
+		
+		if(seqNum % (60/SAMPLE_INTERVAL) ==0){ //long term value each minute
+			q_long_term.add(cpm1min);
+			usv60min = q_long_term.getAverage() * CONVERSION_FACTOR; 
+			Log.d("qq", "media 60 min"+ usv60min);			
+		}
+
 		if ( counter >= MAX_QUEUE_SIZE) {
 			counter = 0;	
 			q2.add(cpm1min);
 			cpm10min = (int) q2.getAverage();
-			Log.d(TAG,"calculateModel() : cpm10min = "+cpm10min);
+
 			usv10min = cpm10min * CONVERSION_FACTOR;
 		} else {
 			counter++;
 		}
-		Log.d(TAG,"calculateModel() : counter = "+counter);
+
 		
 		setChanged();
 		notifyObservers();
 	}
 	
+
 
 	
 

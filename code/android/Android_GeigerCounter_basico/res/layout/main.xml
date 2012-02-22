@@ -92,32 +92,34 @@
           	android:layout_height="wrap_content"
            	android:text="seq"
            	android:textSize="10sp" />
-
-            <RelativeLayout
-                android:id="@+id/relativeLayout1"
+
+            <TextView
+                android:id="@+id/gps_lon"
                 android:layout_width="match_parent"
-                android:layout_height="140dp"
-                android:orientation="horizontal" >
+                android:layout_height="wrap_content"
+                android:text="gpsLoc"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
 
                 <Button
                     android:id="@+id/record_button"
                     android:layout_width="120dip"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="@string/record_button" 
                     android:layout_marginTop="2dip"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentBottom="true"/>
-
-                <Button
-                    android:id="@+id/continue_button"
-                    android:layout_width="120dip"
-                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="@string/pause_button" 
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentBottom="true"
-                    />
-            </RelativeLayout>
+                    android:text="@string/record_button" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+            </LinearLayout>
 
 </LinearLayout>

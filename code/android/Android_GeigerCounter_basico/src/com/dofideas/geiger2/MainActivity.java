@@ -20,6 +20,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -39,6 +41,7 @@ public class MainActivity extends Activity implements Runnable,Observer {
 	private TextView seqDisplay;
 	private TextView averageUsvDisplay;
 	
+	private TextView lonDisplay;
 	// Reader thread and run() function
 	private final Handler handler = new Handler();
 	private int sequenceNumber = 0;
@@ -51,8 +54,10 @@ public class MainActivity extends Activity implements Runnable,Observer {
 	
 	//DataRecorder
 	private DataRecorder mRecorder;
+	private Geoposition mGeopos;
 	private Button rec;
 	private boolean state_recording=false;
+	private boolean state_locationEnabled=false;
 	// Broadcast Receiver
 	private final BroadcastReceiver bcastReceiver = new BroadcastReceiver(){
 		@Override
@@ -74,9 +79,32 @@ public class MainActivity extends Activity implements Runnable,Observer {
 	// Model
 	private final GeigerModel model = new GeigerModel();
 
+	
+
 	 
+	public boolean onCreateOptionsMenu(Menu menu) {
+		
+		menu.add(0, 1, 0, "Enable GPS"); 
+		return true;
+
+	} 
 	
-	
+	public boolean onOptionsItemSelected(MenuItem item) {
+
+		switch (item.getItemId()) {
+		case 1:  //GPS ON off
+			if(state_locationEnabled==true){
+				item.setTitle("Enable GPS");
+				mGeopos.stop();
+			}
+			else{
+				item.setTitle("Disable GPS");
+				mGeopos.start();
+			}
+			return true;		
+		}
+		return false;
+	}
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -88,8 +116,14 @@ public class MainActivity extends Activity implements Runnable,Observer {
         currentUsvDisplay = (TextView) findViewById(R.id.current_usv_display);
         currentCpmDisplay = (TextView) findViewById(R.id.current_cpm_display);
         seqDisplay = (TextView) findViewById(R.id.seq_num);
+
+
+        lonDisplay = (TextView) findViewById(R.id.gps_lon);
+
+
         averageUsvDisplay = (TextView) findViewById(R.id.average_usv_display);
         
+//>>>>>>> master
         // USB management
         usbManager = UsbManager.getInstance(this);
         Log.d(TAG,"onCreate() : usbManager = "+ usbManager);
@@ -132,6 +166,7 @@ public class MainActivity extends Activity implements Runnable,Observer {
         model.addObserver(this);
         
         mRecorder = new DataRecorder(this);
+        mGeopos = new Geoposition(this,lonDisplay);
         //mRecorder.open();
         
         
@@ -329,7 +364,13 @@ public class MainActivity extends Activity implements Runnable,Observer {
 	
 	private void recordValues(){
 		//if(model.getSeqNum())
-			mRecorder.addData(model.getCpm1min(), model.getSeqNum());		
+			if (state_locationEnabled && mGeopos.isFresh() ){
+				mRecorder.addData(model.getCpm1min(), model.getSeqNum(), model.getUsv1min(), mGeopos.getLongitude(), mGeopos.getLatitude() );
+			}else{
+				mRecorder.addData(model.getCpm1min(), model.getSeqNum(),model.getUsv1min());
+				
+			}
+			
 	}
 	
 	private void updateViews(){
@@ -343,6 +384,7 @@ public class MainActivity extends Activity implements Runnable,Observer {
 		
 		currentCpmDisplay.setText(""+cpm1min);		
 		seqDisplay.setText(""+seqNum);
+		lonDisplay.setText("lon:"+mGeopos.getLongitude());
 		currentUsvDisplay.setText(String.format("%.2f",usv1min));
 		averageUsvDisplay.setText(String.format("%.2f",usv10min));
 	}
