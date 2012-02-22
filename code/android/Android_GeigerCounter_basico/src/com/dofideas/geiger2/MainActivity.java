@@ -119,6 +119,7 @@ public class MainActivity extends Activity implements Runnable,Observer {
 
         lonDisplay = (TextView) findViewById(R.id.gps_lon);
 
+
         averageUsvDisplay = (TextView) findViewById(R.id.average_usv_display);
         
 //>>>>>>> master

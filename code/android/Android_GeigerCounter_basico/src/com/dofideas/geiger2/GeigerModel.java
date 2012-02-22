@@ -62,6 +62,7 @@ public class GeigerModel extends Observable  {
 	private int   seqNum = 0;
 	private float usv60min=0.0f;
 	private int counter = 0;		// Counter to trigger secondary queue
+
 	
 
 	static final float SAMPLE_INTERVAL = 0.500f;    // (secs) Hardcoded. TODO: make configurable?
@@ -71,12 +72,14 @@ public class GeigerModel extends Observable  {
 	private static final int MAX_QUEUE_SIZE_2 = 10;   // Num of intervals averaged, for secondary queue
 	
 
+
 	private final Q q_long_term = new Q(60); 
 	private LinkedList<Integer> q1;			// FIFO to hold cpm measures got from Arduino
 	private final Q q = new Q(MAX_QUEUE_SIZE);  // Main queue for holding primary measured raw values
 	private final Q q2 = new Q(MAX_QUEUE_SIZE_2);  // Secondary queue for calculating average (N measures)
 
-	
+
+
 	
 	public GeigerModel(){
 		super();
@@ -121,12 +124,11 @@ public class GeigerModel extends Observable  {
 			usv60min = q_long_term.getAverage() * CONVERSION_FACTOR; 
 			Log.d("qq", "media 60 min"+ usv60min);			
 		}
-		
-		
 		if ( counter >= MAX_QUEUE_SIZE) {
 			counter = 0;	
 			q2.add(cpm1min);
 			cpm10min = (int) q2.getAverage();
+
 			usv10min = cpm10min * CONVERSION_FACTOR;
 		} else {
 			counter++;
