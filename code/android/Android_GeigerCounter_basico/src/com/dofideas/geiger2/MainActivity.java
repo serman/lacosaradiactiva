@@ -116,10 +116,13 @@ public class MainActivity extends Activity implements Runnable,Observer {
         currentUsvDisplay = (TextView) findViewById(R.id.current_usv_display);
         currentCpmDisplay = (TextView) findViewById(R.id.current_cpm_display);
         seqDisplay = (TextView) findViewById(R.id.seq_num);
+<<<<<<< HEAD
 
         lonDisplay = (TextView) findViewById(R.id.gps_lon);
 
 
+=======
+>>>>>>> master
         averageUsvDisplay = (TextView) findViewById(R.id.average_usv_display);
         
 //>>>>>>> master
