@@ -28,6 +28,7 @@ public class DataRecorder {
 		boolean mExternalStorageWriteable = false;
 		
 		String state = Environment.getExternalStorageState();
+		Log.d("ASH", "checkForCard() : state= "+state);
 		if (Environment.MEDIA_MOUNTED.equals(state)) {
 		    // We can read and write the media
 		    mExternalStorageAvailable = mExternalStorageWriteable = true;
@@ -89,18 +90,16 @@ public class DataRecorder {
 	}
 	
 	boolean addData (int cpm, int seq, float sieverts) {
-		try {
-			fos.writeUTF(seq + "," + cpm + ","+sieverts+",0,0"+ "\n" );
-		} catch (IOException e) {
-				Log.d("qq","error in addDAta: ");
-				e.printStackTrace();
-				return false;			
-		}	
-		return true;
+		return addData(cpm, seq, sieverts, 0.0, 0.0);
 	}
 	boolean addData (int cpm, int seq, float sieverts,  double lon, double lat) {
+		String lineOfInfo;
 		try {
-			fos.writeUTF(seq + "," + cpm +","+sieverts+ ","+ lon+ "," +lat+ "\n" );
+			Long currentMillis = System.currentTimeMillis();
+			lineOfInfo = seq + "," + cpm +","+sieverts+ ","+currentMillis+","+ lon+ "," +lat+ "\n";
+			Log.d("DataRecorder","addData() : "+lineOfInfo);
+			
+			fos.writeUTF(lineOfInfo);
 		} catch (IOException e) {
 				Log.d("qq","error in addDAta: ");
 				e.printStackTrace();
@@ -108,4 +107,5 @@ public class DataRecorder {
 		}	
 		return true;
 	}
+	
 }

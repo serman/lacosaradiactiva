@@ -7,5 +7,6 @@
     <string name="record_button">record</string>
     <string name="pause_button">pause</string>
     <string name="average_10_min">Avg</string>
+    <string name="photo_button">photo</string>
 
 </resources>

@@ -12,13 +12,16 @@ import com.android.future.usb.UsbManager;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.ParcelFileDescriptor;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -32,7 +35,7 @@ public class MainActivity extends Activity implements Runnable,Observer {
 	private static final String TAG = "MAIN";
 	
 	private static final String ACTION_USB_PERMISSION = "com.dofideas.geiger.USB_PERMISSION";
-
+	private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 999;
 
 	
 	// View attributes
@@ -56,6 +59,7 @@ public class MainActivity extends Activity implements Runnable,Observer {
 	private DataRecorder mRecorder;
 	private Geoposition mGeopos;
 	private Button rec;
+	private Button photo;		
 	private boolean state_recording=false;
 	private boolean state_locationEnabled=false;
 	// Broadcast Receiver
@@ -154,13 +158,36 @@ public class MainActivity extends Activity implements Runnable,Observer {
 				else{
 					rec.setText("Record");
 					mRecorder.closeFile();
-				}
-				
-				
-				
-				
+				}				
 			}
-        });  
+        });
+        // Button to take a photo which will be bound to measure
+        photo = (Button) findViewById(R.id.photo_button);
+        photo.setOnClickListener(new OnClickListener() {
+			
+
+			public void onClick(View v) {
+				// TODO: http://achorniy.wordpress.com/2010/04/26/howto-launch-android-camera-using-intents/
+				// Define the file-name to save photo taken by Camera activity
+				String fileName = "new-photo-name.jpg";  //TODO: set this
+				//create parameters for Intent with filename
+				ContentValues values = new ContentValues();
+				values.put(MediaStore.Images.Media.TITLE, fileName);
+				values.put(MediaStore.Images.Media.DESCRIPTION,"Image capture by camera");
+				// ImageUri is the current activity attribute, define and save it for later usage (also in onSaveInstanceState)
+				//Uri imageUri = getContentResolver().insert(
+				//	        MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+				//Log.d("ASH", "onClick() : imageUri "+imageUri);
+				// create new Intent
+				Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+				//intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+				//intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
+				startActivityForResult(intent, CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE);
+				/* TODO: retreive image and save it in the same folder than measures 
+				 * with a identifying name
+				 */
+			}
+		});
         
         // Register this in model
         model.addObserver(this);
@@ -203,7 +230,7 @@ public class MainActivity extends Activity implements Runnable,Observer {
 		} else {
 			Log.d(TAG, "onResume() : accessory is null");
 			//TODO: For testing purposes, we start here the random generator
-			//startRandomGenerator();
+			startRandomGenerator();
 		}
     }
     
