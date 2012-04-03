@@ -1,5 +1,5 @@
 package com.dofideas.geiger2;
-
+///mnt/sdcard/Android/data/com.dofideas.geiger2/files
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -58,18 +58,22 @@ public class MainActivity extends Activity implements Runnable,Observer {
 	private Button rec;
 	private boolean state_recording=false;
 	private boolean state_locationEnabled=false;
+	
+	//pachube & Red
+	private pachubeUpdate mPachube;
+	
 	// Broadcast Receiver
 	private final BroadcastReceiver bcastReceiver = new BroadcastReceiver(){
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			String action = intent.getAction();
-			Log.d(TAG,"onReceive() : context "+context+" intent "+intent);
+			//Log.d(TAG,"onReceive() : context "+context+" intent "+intent);
 			
 			if (UsbManager.ACTION_USB_ACCESSORY_DETACHED.equals(action)) {
 				UsbAccessory accessory = UsbManager.getAccessory(intent);
-				Log.d(TAG,"onReceive() : Accessory dettached : "+accessory);
+			//	Log.d(TAG,"onReceive() : Accessory dettached : "+accessory);
 				if (accessory != null && accessory.equals(usbAccessory)) {
-					Log.d(TAG,"onReceive() : About to close accessory : "+usbAccessory);
+				//	Log.d(TAG,"onReceive() : About to close accessory : "+usbAccessory);
 					closeAccessory();
 				}
 			}
@@ -78,6 +82,10 @@ public class MainActivity extends Activity implements Runnable,Observer {
 	
 	// Model
 	private final GeigerModel model = new GeigerModel();
+
+	private Button pachubeButton;
+
+	private boolean pachubeEnabled;
 
 	
 
@@ -96,8 +104,10 @@ public class MainActivity extends Activity implements Runnable,Observer {
 			if(state_locationEnabled==true){
 				item.setTitle("Enable GPS");
 				mGeopos.stop();
+				state_locationEnabled=false;
 			}
 			else{
+				state_locationEnabled=true;
 				item.setTitle("Disable GPS");
 				mGeopos.start();
 			}
@@ -126,15 +136,16 @@ public class MainActivity extends Activity implements Runnable,Observer {
 //>>>>>>> master
         // USB management
         usbManager = UsbManager.getInstance(this);
-        Log.d(TAG,"onCreate() : usbManager = "+ usbManager);
+        //.d(TAG,"onCreate() : usbManager = "+ usbManager);
         
         IntentFilter filter = new IntentFilter(ACTION_USB_PERMISSION);
 		filter.addAction(UsbManager.ACTION_USB_ACCESSORY_DETACHED);
         registerReceiver(bcastReceiver, filter);
-        Log.d(TAG,"onCreate() : bcastReceiver registered :"+bcastReceiver);
+        //Log.d(TAG,"onCreate() : bcastReceiver registered :"+bcastReceiver);
                         
         // TODO: temp test: trigger ACTION_USB_PERMISSION from buttom
         rec = (Button) findViewById(R.id.record_button);
+        pachubeButton = (Button) findViewById(R.id.sendPachube);
         rec.setOnClickListener(new OnClickListener(){
 			public void onClick(View v) {
 				Log.d(TAG,"onClick()");
@@ -154,21 +165,29 @@ public class MainActivity extends Activity implements Runnable,Observer {
 				else{
 					rec.setText("Record");
 					mRecorder.closeFile();
-				}
-				
-				
-				
-				
+				}				
 			}
-        });  
+        });
+        pachubeButton.setOnClickListener(new OnClickListener(){
+        	public void onClick(View v){
+        		//mPachube.execute("30", "0.09","52");
+        		pachubeEnabled=!pachubeEnabled;
+        		if(pachubeEnabled){ //they clicked and now it is recording
+        			pachubeButton.setText("Stop Pachube");									
+				}
+				else{
+					pachubeButton.setText("StartPachube");
+				}
+        	}        	
+        });
         
         // Register this in model
         model.addObserver(this);
         
         mRecorder = new DataRecorder(this);
         mGeopos = new Geoposition(this,lonDisplay);
-        //mRecorder.open();
-        
+        mPachube = new pachubeUpdate(this,"key");
+        //mRecorder.open();       
         
     }
     
@@ -279,7 +298,7 @@ public class MainActivity extends Activity implements Runnable,Observer {
 
 
 	public void run() {
-		Log.d(TAG,"run()");
+		//Log.d(TAG,"run()");
 		while (fileDescriptor != null){
 			int ret = 0;
 			byte[] buffer = new byte[16384];
@@ -305,7 +324,7 @@ public class MainActivity extends Activity implements Runnable,Observer {
 						    cpm |= buffer[i+1] & 0xFF;
 						    cpm <<= 8;
 						    cpm |= buffer[i+2] & 0xFF;
-						    Log.d(TAG,"run() : (0x1) measure read "+cpm);
+						    //Log.d(TAG,"run() : (0x1) measure read "+cpm);
 						    model.setIntervalCount(cpm);
 						}
 						i += 3;
@@ -316,7 +335,7 @@ public class MainActivity extends Activity implements Runnable,Observer {
 						    seq |= buffer[i+1] & 0xFF;
 						    seq <<= 8;
 						    seq |= buffer[i+2] & 0xFF;
-						    Log.d(TAG,"run() : (0x2) seq num "+seq);
+						    //Log.d(TAG,"run() : (0x2) seq num "+seq);
 						    model.setSeqNum(seq);
 						    /**TODO: improve this
 						    sequenceNumber = seq;
@@ -331,7 +350,7 @@ public class MainActivity extends Activity implements Runnable,Observer {
 						break;
 						
 					default:
-						Log.d(TAG, "run() : unknown msg: " + buffer[i]);
+						//Log.d(TAG, "run() : unknown msg: " + buffer[i]);
 						i = len;
 						break;
 					}
@@ -350,7 +369,7 @@ public class MainActivity extends Activity implements Runnable,Observer {
 
 	public void update(Observable observable, Object data) {
 		// TODO Auto-generated method stub
-		Log.d(TAG,"update() , called from model");
+		//Log.d(TAG,"update() , called from model");
 		
 		// Call updateViews from Main thread
 		handler.post(new Runnable(){
@@ -367,20 +386,37 @@ public class MainActivity extends Activity implements Runnable,Observer {
 			if (state_locationEnabled && mGeopos.isFresh() ){
 				mRecorder.addData(model.getCpm1min(), model.getSeqNum(), model.getUsv1min(), mGeopos.getLongitude(), mGeopos.getLatitude() );
 			}else{
-				mRecorder.addData(model.getCpm1min(), model.getSeqNum(),model.getUsv1min());
-				
+				mRecorder.addData(model.getCpm1min(), model.getSeqNum(),model.getUsv1min());				
 			}
 			
 	}
 	
+	private void sendToPachube(){
+		if (pachubeEnabled ){
+			Log.d("qq","Sending message to pachube() pachubeEnagled");
+			//mPachube.execute(Integer.toString(model.getCpm1min()), Double.toString(mGeopos.getLongitude()),Double.toString(mGeopos.getLatitude()));			
+			mPachube = new pachubeUpdate(this,"key");
+			if(state_locationEnabled)
+				mPachube.execute(Integer.toString(model.getCpm1min()), Double.toString(mGeopos.getLongitude()),Double.toString(mGeopos.getLatitude()));
+			else{
+				mPachube.execute(Integer.toString(model.getCpm1min()), "0","0");
+				Log.d("qq","Sending message to pachube() with position");
+				}	
+		}
+		
+	}
+	
 	private void updateViews(){
-		Log.d(TAG,"updateViews()");
+		//Log.d(TAG,"updateViews()");
 		// Get values from model
 		int cpm1min = model.getCpm1min();
 		int seqNum = model.getSeqNum();
 		float usv1min = model.getUsv1min();
 		float usv10min = model.getUsv10min();
-		
+		if(pachubeEnabled){
+			if(seqNum%30==0)
+				sendToPachube();
+		}
 		
 		currentCpmDisplay.setText(""+cpm1min);		
 		seqDisplay.setText(""+seqNum);

@@ -54,14 +54,15 @@ public class Geoposition  {
 		locationManager.removeUpdates(locationListener);
 		
 	}
-
+	
+	// Called when a new location is found by the network location provider.
 	protected void makeUseOfNewLocation(Location location) {
-		// TODO Auto-generated method stub
+
 		freshLocation=true;
 		lon=location.getLongitude();
 		lat=location.getLatitude();		
 		this.mtext.setText("auto: "+lon);
-		Log.d("qq","new location: "+ lon +" // lat:" +  lat);
+		//Log.d("qq","new location: "+ lon +" // lat:" +  lat);
 	}
 	
 	//Note user should check if the location is fresh or stinks.
