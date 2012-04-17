@@ -126,7 +126,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical" >
+                 
+                 <com.google.android.maps.MapView
+                 android:layout_width="fill_parent"
+                 android:layout_height="fill_parent"
+                 android:apiKey="0QVu_CEg-pNOcIoduM1LKHnC16FEe5_J1e_8TjQ"
+                 />
 
             </LinearLayout>
-
+			
 </LinearLayout>

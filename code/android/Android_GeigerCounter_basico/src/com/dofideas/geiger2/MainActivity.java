@@ -9,6 +9,7 @@ import java.util.Observer;
 
 import com.android.future.usb.UsbAccessory;
 import com.android.future.usb.UsbManager;
+import com.google.android.maps.MapActivity;
 
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -27,7 +28,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MainActivity extends Activity implements Runnable,Observer {
+public class MainActivity extends MapActivity implements Runnable,Observer {
 	
 	private static final String TAG = "MAIN";
 	
@@ -423,5 +424,11 @@ public class MainActivity extends Activity implements Runnable,Observer {
 		lonDisplay.setText("lon:"+mGeopos.getLongitude());
 		currentUsvDisplay.setText(String.format("%.2f",usv1min));
 		averageUsvDisplay.setText(String.format("%.2f",usv10min));
+	}
+
+	@Override
+	protected boolean isRouteDisplayed() {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
