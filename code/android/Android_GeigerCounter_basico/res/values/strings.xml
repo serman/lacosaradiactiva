@@ -7,5 +7,34 @@
     <string name="record_button">record</string>
     <string name="pause_button">pause</string>
     <string name="average_10_min">Avg</string>
+    
+    
+    <!-- Preferences -->
+	<string name="main_settings">Main settings</string>
+	<string name="fullscreen">Fullscreen</string>
+	<string name="fullscreen_explanation"> Full screen mode  </string>
+
+	<string name="lock">Keep screen on</string>
+	<string name="lock_explanation"> Keeping the screen on, will keep the phone sending
+		data </string>
+
+	<string name="rotate">Rotate</string>
+	<string name="rotate_explanation">Rotate interface </string>
+	
+	<string name="about">About</string>
+	<string name="manual">Manual</string>
+	
+	<string-array name="listRotationPreference"> 
+		<item>Landscape</item>
+		<item>Portrait</item>
+		<item>Sensor</item>
+	</string-array>
+	<string-array name="listRotationPreferenceValue">
+		<item>0</item>
+		<item>1</item>
+		<item>2</item>
+	</string-array> 
+	
+	
 
 </resources>

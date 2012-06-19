@@ -1,4 +1,4 @@
-package com.dofideas.geiger2;
+package com.lacosaradioactiva.geiger;
 
 import android.util.Log;
 import java.util.Random;

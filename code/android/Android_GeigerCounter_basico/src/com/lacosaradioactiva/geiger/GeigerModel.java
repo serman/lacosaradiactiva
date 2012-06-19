@@ -1,4 +1,4 @@
-package com.dofideas.geiger2;
+package com.lacosaradioactiva.geiger;
 
 import java.util.LinkedList;
 import java.util.Observable;

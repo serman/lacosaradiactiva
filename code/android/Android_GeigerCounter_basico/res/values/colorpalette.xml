@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources> 
+
+<color name="bg">#FF000000</color> 
+
+<color name="c1">#47696E</color> 
+<color name="c2">#7B5C6B</color> 
+<color name="c3">#66B0BA</color> 
+<color name="c4">#3B3820</color> 
+<color name="c5">#BAB26F</color> 
+
+<color name="noactivo">#BBBB0000</color> 
+<color name="activo">#BB00BB00</color> 
+<color name="normal">#BB000000</color> 
+
+</resources> 

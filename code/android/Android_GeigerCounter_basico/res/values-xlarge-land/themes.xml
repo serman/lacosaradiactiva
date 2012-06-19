@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources> 
+   
+    <!-- TODO: change to holo -->
+    <style name="themegeigercounter" parent="android:Theme.Black.NoTitleBar"> 
+    </style>
+
+ 
+</resources>

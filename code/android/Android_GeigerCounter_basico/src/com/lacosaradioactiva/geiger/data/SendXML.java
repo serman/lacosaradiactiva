@@ -1,4 +1,4 @@
-package com.dofideas.geiger2;
+package com.lacosaradioactiva.geiger.data;
 
 import java.io.IOException;
 import java.util.ArrayList;

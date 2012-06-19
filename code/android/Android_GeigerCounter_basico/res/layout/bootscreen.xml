@@ -1,0 +1,7 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<ImageView android:src="@drawable/ic_launcher" 
+		android:layout_width="wrap_content" android:id="@+id/image1"
+		android:layout_height="wrap_content" android:scaleType="centerCrop"></ImageView>
+
+</merge> 

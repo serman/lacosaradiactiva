@@ -1,132 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical"
-    android:gravity="center_horizontal">
-
+    android:gravity="center_horizontal"
+    >
+
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:id="@+id/linearLayout1"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="20dip"
-        android:layout_marginBottom="20dip" >
+        android:layout_alignParentTop="true"
+        android:orientation="vertical" >
 
-        
-        <LinearLayout
-       		android:layout_width="fill_parent"
-        	android:layout_height="wrap_content"
-        	android:orientation="horizontal"
-        	android:gravity="right" > 
+        <TextView
+            android:id="@+id/current_cpm_display"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dip"
+            android:text="---"
+            android:textSize="20sp" />
 
-       		<TextView 
-       		    android:id="@+id/current_cpm_display"
-       		    android:layout_width="wrap_content"
-            	android:layout_height="wrap_content"
-            	android:text="---"
-            	android:textSize="20sp"
-            	android:layout_marginRight="10dip" />
-       		<TextView 
-       		    android:layout_width="wrap_content"
-            	android:layout_height="wrap_content"
-            	android:text="@string/counts_per_minute"
-            	android:textSize="20sp" />
-       	</LinearLayout>  
-        <TextView 
-           	android:id="@+id/current_usv_display"
-           	android:layout_width="wrap_content"
-           	android:layout_height="wrap_content"
-           	android:text="---"
-           	android:textSize="60sp"
-           	android:layout_weight="1"
-           	android:textColor="#00cc33"
-        />
-        <LinearLayout
-       	    android:layout_width="wrap_content"
-        	android:layout_height="wrap_content"
-        	android:orientation="horizontal"
-        	android:gravity="right"
-       	    >        
-       	    <TextView 
-            	android:layout_width="wrap_content"
-            	android:layout_height="wrap_content"
-            	android:text="@string/average_10_min"
-            	android:textSize="10sp"
-            	android:layout_marginLeft="10dip"
-            	android:layout_weight="1"
-            	/>
-        	<TextView 
-            	android:id="@+id/average_usv_display"
-            	android:layout_width="wrap_content"
-            	android:layout_height="wrap_content"
-            	android:text="---"
-            	android:textSize="30sp"
-            	android:layout_marginLeft="10dip"
-            	android:layout_weight="1"
-            	android:textColor="#00cccc"
-            	/>
-       	</LinearLayout>
-        <TextView 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/counts_per_minute"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/current_usv_display"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="---"
+            android:textColor="#00cc33"
+            android:textSize="60sp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_weight="1"
+            android:text="@string/average_10_min"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/average_usv_display"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_weight="1"
+            android:text="---"
+            android:textColor="#00cccc"
+            android:textSize="30sp" />
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/microsievert_hour"
             android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/raw_display"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Raw data to come..."
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/seq_num"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="seq"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/gps_lon"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="gpsLoc"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
     </LinearLayout>
+
     <LinearLayout
-    	android:layout_width="fill_parent"
-      	android:layout_height="wrap_content"
-       	android:orientation="horizontal"
-       	android:gravity="center" >
-    </LinearLayout>
-    <TextView
-        android:id="@+id/raw_display"
+        android:id="@+id/linearLayout1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:text="Raw data to come..."
-         />
-            <TextView 
-       	    android:id="@+id/seq_num"
-       	    android:layout_width="fill_parent"
-          	android:layout_height="wrap_content"
-           	android:text="seq"
-           	android:textSize="10sp" />
-
-            <TextView
-                android:id="@+id/gps_lon"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="gpsLoc"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
-
-            <LinearLayout
-                android:id="@+id/linearLayout1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
+        android:layout_alignParentBottom="true" >
 
-                <Button
-                    android:id="@+id/sendPachube"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="sendPachube" />
+        <Button
+            android:id="@+id/sendPachube"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="sendPachube" />
 
-                <Button
-                    android:id="@+id/record_button"
-                    android:layout_width="120dip"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="2dip"
-                    android:layout_weight="1"
-                    android:text="@string/record_button" />
-            </LinearLayout>
+        <Button
+            android:id="@+id/record_button"
+            android:layout_width="0dip"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/record_button" />
+    </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/linearLayout2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" >
-
-            </LinearLayout>
-
-</LinearLayout>
+</RelativeLayout>

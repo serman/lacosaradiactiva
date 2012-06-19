@@ -1,4 +1,4 @@
-package com.dofideas.geiger2;
+package com.lacosaradioactiva.geiger.data;
 
 import java.io.DataOutputStream;
 import java.io.File;
@@ -19,7 +19,7 @@ public class DataRecorder {
 
 	private Context contextRef;
 	private DataOutputStream fos;
-	DataRecorder(Context andContext){
+	public DataRecorder(Context andContext){
 		this.contextRef=andContext;		
 	}
 	boolean checkForCard(){
@@ -45,7 +45,7 @@ public class DataRecorder {
 		
 	}
 	
-	boolean open(){
+	public boolean open(){
 		if(checkForCard()){
 			if(openFile()){
 				Log.d("qq","open: ");
@@ -78,7 +78,7 @@ public class DataRecorder {
 		return true;
 	}
 	
-	boolean closeFile(){
+	public boolean closeFile(){
 		Log.d("qq","closing file");
 		try {
 			fos.close();
@@ -88,7 +88,7 @@ public class DataRecorder {
 		return true;
 	}
 	
-	boolean addData (int cpm, int seq, float sieverts) {
+	public boolean addData (int cpm, int seq, float sieverts) {
 		try {
 			fos.writeUTF(seq + "," + cpm + ","+sieverts+",0,0"+ "\n" );
 		} catch (IOException e) {
@@ -98,7 +98,7 @@ public class DataRecorder {
 		}	
 		return true;
 	}
-	boolean addData (int cpm, int seq, float sieverts,  double lon, double lat) {
+	public boolean addData (int cpm, int seq, float sieverts,  double lon, double lat) {
 		try {
 			fos.writeUTF(seq + "," + cpm +","+sieverts+ ","+ lon+ "," +lat+ "\n" );
 		} catch (IOException e) {

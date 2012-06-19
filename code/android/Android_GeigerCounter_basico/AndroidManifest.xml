@@ -1,37 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.dofideas.geiger2"
+    package="com.lacosaradioactiva.geiger"
+    android:installLocation="auto"
     android:versionCode="1"
     android:versionName="1.0" >
 
-    <uses-sdk android:minSdkVersion="10"/>
-	<uses-feature android:name="android.hardware.usb.accessory" />
-	<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-	<uses-permission android:name="android.permission.INTERNET" />
+    <supports-screens
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
+
+    <uses-sdk
+        android:minSdkVersion="10"
+        android:targetSdkVersion="10" />
+
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+
+    <uses-feature android:name="android.hardware.usb.accessory" />
+    <uses-feature
+        android:name="android.hardware.sensor.compass"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location"
+        android:required="false" />
+
     <application
+        android:name=".MainApp"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
-        android:theme="@android:style/Theme.NoTitleBar" >
-        <uses-library android:name="com.android.future.usb.accessory" />
+        android:theme="@style/themegeigercounter" >
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name" 
-            android:screenOrientation="portrait"
             android:launchMode="singleInstance" >
             <intent-filter>
+                <action android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED"
+                android:resource="@xml/accessory_filter" />
+        </activity>
+        <activity
+            android:name=".BootScreenActivity"
+            android:screenOrientation="portrait" >
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            <intent-filter>
-				<action android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED" />
-			</intent-filter>
-
-			<meta-data android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED"
-				android:resource="@xml/accessory_filter" />
-            
         </activity>
-
+        <activity
+            android:name=".PreferencesActivity"
+            android:screenOrientation="behind" >
+        </activity>
     </application>
+
+    <uses-library android:name="com.android.future.usb.accessory" />
 
 </manifest>

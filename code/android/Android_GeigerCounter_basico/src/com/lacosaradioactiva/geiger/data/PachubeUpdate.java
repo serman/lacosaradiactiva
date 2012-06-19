@@ -1,4 +1,4 @@
-package com.dofideas.geiger2;
+package com.lacosaradioactiva.geiger.data;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -27,10 +27,10 @@ import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
 
-public class pachubeUpdate extends AsyncTask<String, Void, Void> {
+public class PachubeUpdate extends AsyncTask<String, Void, Void> {
 	private Context contextRef;
 	private String key;
-	pachubeUpdate(Context andContext, String key){
+	public PachubeUpdate(Context andContext, String key){
 		this.contextRef=andContext;		
 		this.key=key;
 	}
