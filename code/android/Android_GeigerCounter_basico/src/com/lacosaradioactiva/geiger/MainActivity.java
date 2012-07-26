@@ -20,7 +20,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
-
+ 
 import com.android.future.usb.UsbAccessory;
 import com.android.future.usb.UsbManager;
 import com.lacosaradioactiva.geiger.base.BaseActivity;
