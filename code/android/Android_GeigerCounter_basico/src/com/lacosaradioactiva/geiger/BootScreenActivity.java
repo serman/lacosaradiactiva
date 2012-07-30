@@ -48,6 +48,7 @@ public class BootScreenActivity extends BaseActivity {
 
 	private void exitSplash() { 
 		finish(); 
+		//startActivity(new Intent(getApplicationContext(), com.lacosaradioactiva.geiger.maps.MyMapActivity.class));  
 		startActivity(new Intent(getApplicationContext(), com.lacosaradioactiva.geiger.MainActivity.class));  
 	} 
 } 

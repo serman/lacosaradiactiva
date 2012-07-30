@@ -1,4 +1,4 @@
-package com.lacosaradioactiva.geiger.base;
+package com.lacosaradioactiva.geiger.data;
 
 public class LocationNode {
 

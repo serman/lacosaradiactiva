@@ -1,4 +1,4 @@
-package com.lacosaradioactiva.geiger.base;
+package com.lacosaradioactiva.geiger.maps;
 
 import android.location.LocationListener;
 import android.location.LocationManager;

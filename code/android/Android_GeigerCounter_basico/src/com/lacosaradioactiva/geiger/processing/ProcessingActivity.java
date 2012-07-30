@@ -1,12 +1,12 @@
-package com.lacosaradioactiva.processing;
+package com.lacosaradioactiva.geiger.processing;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 
-import com.drexler.R;
+import com.lacosaradioactiva.geiger.R;
 
-public class N1Activity extends FragmentActivity {
+public class ProcessingActivity extends FragmentActivity {
 
 	/** Called when the activity is first created. */
 	@Override
@@ -14,11 +14,11 @@ public class N1Activity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.mainforfragments);
 
-		addProcessingSketch(new Processing(), R.id.f1);
+		addProcessingSketch(new ProcessingSketch(), R.id.f1);
 
 	} 
 
-	public void addProcessingSketch(Processing processing, int fragmentPosition) {
+	public void addProcessingSketch(ProcessingSketch processing, int fragmentPosition) {
 
 		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
 		ft.add(fragmentPosition, processing);

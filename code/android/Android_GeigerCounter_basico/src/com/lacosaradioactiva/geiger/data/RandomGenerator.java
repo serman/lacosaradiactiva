@@ -1,7 +1,8 @@
-package com.lacosaradioactiva.geiger;
+package com.lacosaradioactiva.geiger.data;
 
 import android.util.Log;
 import java.util.Random;
+
 
 public class RandomGenerator implements Runnable {
 	

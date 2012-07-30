@@ -12,8 +12,8 @@
         android:xlargeScreens="true" />
 
     <uses-sdk
-        android:minSdkVersion="10"
-        android:targetSdkVersion="10" />
+        android:minSdkVersion="12"
+        android:targetSdkVersion="14" />
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -46,6 +46,12 @@
                 android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED"
                 android:resource="@xml/accessory_filter" />
         </activity>
+      
+        <activity android:name=".processing.ProcessingActivity" >
+        </activity>
+      
+        <activity android:name=".maps.MyMapActivity" >
+        </activity>
         <activity
             android:name=".BootScreenActivity"
             android:screenOrientation="portrait" >
@@ -59,8 +65,9 @@
             android:name=".PreferencesActivity"
             android:screenOrientation="behind" >
         </activity>
-    </application>
 
-    <uses-library android:name="com.android.future.usb.accessory" />
+        <uses-library android:name="com.google.android.maps" />
+
+    </application>
 
 </manifest>

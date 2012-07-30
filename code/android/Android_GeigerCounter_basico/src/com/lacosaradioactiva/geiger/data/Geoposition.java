@@ -1,4 +1,4 @@
-package com.lacosaradioactiva.geiger;
+package com.lacosaradioactiva.geiger.data;
 
 import android.content.Context;
 import android.location.Location;
@@ -65,7 +65,7 @@ public class Geoposition  {
 	}
 	
 	//Note user should check if the location is fresh or stinks.
-	double getLongitude(){
+	public double getLongitude(){
 		if(!freshLocation){
 			Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 			if(lastKnownLocation!=null)
@@ -76,7 +76,7 @@ public class Geoposition  {
 			return lon;
 	}
 	
-	double getLatitude(){
+	public double getLatitude(){
 		if(!freshLocation){
 			Location lastKnownLocation = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
 			if(lastKnownLocation!=null)

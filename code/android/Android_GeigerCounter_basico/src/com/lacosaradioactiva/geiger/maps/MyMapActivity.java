@@ -1,6 +1,5 @@
 package com.lacosaradioactiva.geiger.maps;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
@@ -23,9 +22,9 @@ import com.google.android.maps.Overlay;
 import com.google.android.maps.OverlayItem;
 import com.google.android.maps.Projection;
 import com.lacosaradioactiva.geiger.R;
-import com.lacosaradioactiva.geiger.base.LocationNode;
-import com.lacosaradioactiva.geiger.base.MapBaseActivity;
-import com.lacosaradioactiva.geiger.base.MyOverlayItem;
+import com.lacosaradioactiva.geiger.R.drawable;
+import com.lacosaradioactiva.geiger.R.id;
+import com.lacosaradioactiva.geiger.R.layout;
 
 public class MyMapActivity extends MapBaseActivity {
 

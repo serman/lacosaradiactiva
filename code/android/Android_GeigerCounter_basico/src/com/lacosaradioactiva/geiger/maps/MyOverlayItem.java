@@ -1,4 +1,4 @@
-package com.lacosaradioactiva.geiger.base;
+package com.lacosaradioactiva.geiger.maps;
 
 import com.google.android.maps.GeoPoint;
 import com.google.android.maps.OverlayItem;
