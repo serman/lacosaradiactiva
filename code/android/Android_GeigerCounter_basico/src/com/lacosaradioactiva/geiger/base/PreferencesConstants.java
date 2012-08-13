@@ -58,7 +58,7 @@ public class PreferencesConstants {
 
 		try {
 			PreferencesConstants.version = c.getPackageManager().getPackageInfo(
-					"net.sweetmonster.prototypr", 0).versionCode;
+					"com.lacosaradiactiva.geiger", 0).versionCode;
 		} catch (NameNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

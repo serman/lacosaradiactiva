@@ -64,8 +64,8 @@ public class CounterFragment extends Fragment implements Runnable, Observer {
 	private PachubeUpdate mPachube;
 
 	// *************************************** USB management
-	private UsbManager usbManager;
-	private UsbAccessory usbAccessory;
+	private UsbManager musbManager;
+	private UsbAccessory musbAccessory;
 	private ParcelFileDescriptor fileDescriptor;
 	private FileInputStream inputStream;
 	private FileOutputStream outputStream;
@@ -104,10 +104,11 @@ public class CounterFragment extends Fragment implements Runnable, Observer {
 		UsbAccessory[] accessoryList = manager.getAccessoryList();
 	}
 
-	private void openAccessory() {
-		Log.d(TAG, "openAccessory() : " + usbAccessory);
-
-		fileDescriptor = usbManager.openAccessory(usbAccessory);
+	private void openAccessory( ){
+		Log.d(TAG, "openAccessory() starting into : " + musbAccessory);
+		
+		UsbManager musbManager = (UsbManager) mContext.getSystemService(Context.USB_SERVICE);
+		fileDescriptor = musbManager.openAccessory(musbAccessory);
 
 		if (fileDescriptor != null) {
 
@@ -133,7 +134,7 @@ public class CounterFragment extends Fragment implements Runnable, Observer {
 		} catch (IOException e) {
 		} finally {
 			fileDescriptor = null;
-			usbAccessory = null;
+			musbAccessory = null;
 		}
 
 	}
@@ -146,6 +147,8 @@ public class CounterFragment extends Fragment implements Runnable, Observer {
 	private final GeigerModel model = new GeigerModel();
 	private Button pachubeButton;
 	private boolean pachubeEnabled;
+
+	private PendingIntent mPermissionIntent;
 
 	public boolean onCreateOptionsMenu(Menu menu) {
 
@@ -182,7 +185,7 @@ public class CounterFragment extends Fragment implements Runnable, Observer {
 			Bundle savedInstanceState) {
 		
 		super.onCreateView(inflater, container, savedInstanceState);
-		Log.d(TAG, "onCreate()");
+		Log.d(TAG, "onCreateView()");
 		View v = inflater.inflate(R.layout.main_g, null);
 
 		// Get View handlers
@@ -247,10 +250,8 @@ public class CounterFragment extends Fragment implements Runnable, Observer {
 		mContext = (Activity) this.getActivity();
 
 		// USB management
-		UsbManager mUsbManager = (UsbManager) mContext
-				.getSystemService(Context.USB_SERVICE);
-		PendingIntent mPermissionIntent = PendingIntent.getBroadcast(mContext, 0, new Intent(
-				ACTION_USB_PERMISSION), 0);
+		musbManager = (UsbManager) mContext.getSystemService(Context.USB_SERVICE);
+		mPermissionIntent = PendingIntent.getBroadcast(mContext, 0, new Intent(ACTION_USB_PERMISSION), 0);
 		IntentFilter filter = new IntentFilter(ACTION_USB_PERMISSION);
 		mContext.registerReceiver(mUsbReceiver, filter);
 
@@ -273,27 +274,25 @@ public class CounterFragment extends Fragment implements Runnable, Observer {
 	public void onResume() {
 		Log.d(TAG, "onResume()");
 		super.onResume();
-
 		// If file descriptor to read from Arduino is already set, skip the
 		// remainder of onResume
 		if (inputStream != null) {
 			return;
 		}
-
-		/*
-		 * UsbAccessory[] accessories = usbManager.getAccessoryList();
-		 * UsbAccessory accessory = (accessories == null ? null :
-		 * accessories[0]);
-		 * Log.d(TAG,"onResume() : accessory got from USB enumeration : "
-		 * +accessory); if (accessory != null) { if
-		 * (usbManager.hasPermission(accessory)) {
-		 * Log.d(TAG,"onResume() : We HAVE permission for accessory : "
-		 * +accessory); openAccessory(accessory); } else {
-		 * Log.d(TAG,"onResume() : We NEED permission for accessory : "
-		 * +accessory); // TODO: } } else { Log.d(TAG,
-		 * "onResume() : accessory is null"); //TODO: For testing purposes, we
-		 * start here the random generator //startRandomGenerator(); }
-		 */
+		Log.d(TAG,"onResume() : justo antes : " + musbManager.toString());
+		
+		  UsbAccessory[] accessories = musbManager.getAccessoryList();
+		  musbAccessory = (accessories == null ? null : accessories[0]);
+		  Log.d(TAG,"onResume() : accessory got from USB enumeration : " +musbAccessory); 
+		  if (musbAccessory != null) { 
+			  if(musbManager.hasPermission(musbAccessory)) {
+				  	Log.d(TAG,"onResume() : We HAVE permission for accessory : " +musbAccessory); 
+				  	openAccessory(	); 
+			} else {
+				Log.d(TAG,"onResume() : We NEED permission for accessory : "+musbAccessory); 
+		   }
+		  }
+		
 
 	}
 
@@ -335,7 +334,7 @@ public class CounterFragment extends Fragment implements Runnable, Observer {
 	}
 
 	public void run() {
-		// Log.d(TAG,"run()");
+		Log.d(TAG,"run()");
 		while (fileDescriptor != null) {
 			int ret = 0;
 			byte[] buffer = new byte[16384];
