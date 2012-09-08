@@ -2,8 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="12dp"
-    android:gravity="center_horizontal" >
+    android:gravity="center_horizontal"
+    android:padding="5dp" >
 
     <LinearLayout
         android:id="@+id/linearLayout1"
@@ -62,72 +62,63 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/valuesInstantaneo"
-        android:text="Instantáneo" />
-
+        android:text="Media" />
+
     <LinearLayout
-        android:id="@+id/valuesMediaCPM"
-        android:layout_width="wrap_content"
+        android:id="@+id/valuesMedia"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/labelMediaCPM"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="0dp" >
 
-        <TextView
-            android:id="@+id/current_cpm_display"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/valuesMediaCPM"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="---"
-            android:textColor="#00cc33"
-            android:textSize="30sp" />
+            android:layout_marginLeft="0dp"
+            android:layout_weight="1" >
 
-        <TextView
-            android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/current_cpm_display"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="---"
+                android:textColor="#00cc33"
+                android:textSize="30sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/counts_per_minute"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+        <!-- media ush -->
+
+        <LinearLayout
+            android:id="@+id/valuesMediaUSH"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="@string/counts_per_minute"
-            android:textSize="20sp" />
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="0dp"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/average_usv_display"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="---"
+                android:textColor="#00cc33"
+                android:textSize="30sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/microsievert_hour"
+                android:textSize="20sp" />
+        </LinearLayout>
     </LinearLayout>
-
-    <!-- media ush -->
-
-    <TextView
-        android:id="@+id/labelMediaUSH"
-        style="@style/qq"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/valuesMediaCPM"
-        android:text="Instantáneo" />
-
-    <LinearLayout
-        android:id="@+id/valuesMediaUSH"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/labelMediaUSH"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="0dp" >
-
-        <TextView
-            android:id="@+id/average_usv_display"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="---"
-            android:textColor="#00cc33"
-            android:textSize="30sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/microsievert_hour"
-            android:textSize="20sp" />
-    </LinearLayout>
-
-    <com.lacosaradioactiva.geiger.views.GraphView
-        android:id="@+id/graphview"
-        android:layout_width="fill_parent"
-        android:layout_height="125dp"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/valuesMediaUSH"
-        android:layout_marginTop="25dp"
-        android:background="@android:color/transparent" />
 
     <!--
        <com.lacosaradioactiva.geiger.views.GraphView
@@ -137,7 +128,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/valuesMediaUSH"
         android:layout_marginLeft="22dp"
-        android:layout_marginTop="62dp" /> 
+        android:layout_marginTop="62dp" /> 
     -->
 
     <LinearLayout
@@ -147,7 +138,7 @@
         android:layout_alignParentBottom="true"
         android:orientation="vertical"
         android:visibility="visible" >
-
+
         <Button
             android:id="@+id/sendPachube"
             android:layout_width="match_parent"
@@ -156,7 +147,7 @@
             android:layout_weight="1"
             android:background="@drawable/custom_button"
             android:text="sendPachube" />
-
+
         <Button
             android:id="@+id/record_button"
             android:layout_width="match_parent"
@@ -165,7 +156,7 @@
             android:layout_weight="1"
             android:background="@drawable/custom_button"
             android:text="@string/record_button" />
-
+
         <Button
             android:id="@+id/launch_processing"
             android:layout_width="match_parent"
@@ -174,7 +165,15 @@
             android:layout_weight="1"
             android:background="@drawable/custom_button"
             android:text="launch p5" />
-
     </LinearLayout>
+
+    <com.lacosaradioactiva.geiger.views.GraphView
+        android:id="@+id/graphview"
+        android:layout_width="fill_parent"
+        android:layout_height="125dp"
+        android:layout_alignLeft="@+id/valuesMedia"
+        android:layout_below="@+id/valuesMedia"
+        android:layout_marginTop="25dp"
+        android:background="@android:color/transparent" />
 
 </RelativeLayout>
