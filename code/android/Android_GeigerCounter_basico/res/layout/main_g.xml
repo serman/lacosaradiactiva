@@ -111,7 +111,7 @@
             android:layout_gravity="center_vertical"
             android:layout_margin="5dp"
             android:gravity="center_vertical"
-            android:text="Instantáneo" />
+            android:text="Media" />
 
         <View
             android:id="@+id/labelInstantaneo"
