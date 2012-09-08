@@ -87,10 +87,10 @@ public class GraphView extends View {
 		mCanvas = new Canvas();
 		bitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
 		mCanvas.setBitmap(bitmap);
-		mCanvas.drawColor(0x00FFFFFF);
-		mPaint.setColor(0xFFFFFFFF);
-		mPaint.setStyle(Style.STROKE);
+		mPaint.setColor(0x88000000);
+		mPaint.setStyle(Style.FILL);
 		mCanvas.drawRoundRect(new RectF(0, 0, mWidth, mHeight), 12, 12, mPaint);
+		
 		mPaint.setColor(0x55FFFFFF);
 		for (int i = 0; i < mWidth; i = i + (int) (mWidth / 9)) {
 			mCanvas.drawLine(i, 0, i, mHeight, mPaint);
@@ -138,6 +138,11 @@ public class GraphView extends View {
 			if (mLastX >= mMaxX) {
 				mLastX = 0;
 			} 
+			
+			
+			mPaint.setColor(0xFFFFFFFF);
+			mPaint.setStyle(Style.STROKE);
+			mCanvas.drawRoundRect(new RectF(0, 0, mWidth, mHeight), 12, 12, mPaint);
 			
 
 		}
