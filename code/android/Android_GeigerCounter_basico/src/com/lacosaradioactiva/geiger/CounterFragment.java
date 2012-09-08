@@ -36,6 +36,13 @@ import com.lacosaradioactiva.geiger.data.PachubeUpdate;
 import com.lacosaradioactiva.geiger.data.RandomGenerator;
 import com.lacosaradioactiva.geiger.processing.ProcessingActivity;
 
+
+/* 
+ * NOTAS: he quitado seqDisplay porque no sab’a lo que era 
+ * 
+ * 
+ */ 
+
 public class CounterFragment extends Fragment implements Runnable, Observer {
 
 	private static final String TAG = "MAIN";
@@ -45,7 +52,7 @@ public class CounterFragment extends Fragment implements Runnable, Observer {
 	// View attributes
 	private TextView currentUsvDisplay;
 	private TextView currentCpmDisplay;
-	private TextView seqDisplay;
+	//private TextView seqDisplay;
 	private TextView averageUsvDisplay;
 	private TextView lonDisplay;
 
@@ -191,7 +198,7 @@ public class CounterFragment extends Fragment implements Runnable, Observer {
 		// Get View handlers
 		currentUsvDisplay = (TextView) v.findViewById(R.id.current_usv_display);
 		currentCpmDisplay = (TextView) v.findViewById(R.id.current_cpm_display);
-		seqDisplay = (TextView) v.findViewById(R.id.seq_num);
+		//seqDisplay = (TextView) v.findViewById(R.id.seq_num);
 		lonDisplay = (TextView) v.findViewById(R.id.gps_lon);
 		averageUsvDisplay = (TextView) v.findViewById(R.id.average_usv_display);
 
@@ -396,7 +403,7 @@ public class CounterFragment extends Fragment implements Runnable, Observer {
 	}
 
 	private void displaySeq() {
-		seqDisplay.setText("" + sequenceNumber);
+		//seqDisplay.setText("" + sequenceNumber);
 	}
 
 	public void update(Observable observable, Object data) {
@@ -458,7 +465,7 @@ public class CounterFragment extends Fragment implements Runnable, Observer {
 		}
 
 		currentCpmDisplay.setText("" + cpm1min);
-		seqDisplay.setText("" + seqNum);
+		//seqDisplay.setText("" + seqNum);
 		lonDisplay.setText("lon:" + mGeopos.getLongitude());
 		currentUsvDisplay.setText(String.format("%.2f", usv1min));
 		averageUsvDisplay.setText(String.format("%.2f", usv10min));

@@ -14,7 +14,7 @@ public class ProcessingActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.mainforfragments);
 
-		addProcessingSketch(new ProcessingSketch(), R.id.f1);
+		addProcessingSketch(new ProcessingSketch(), R.id.f1); 
 
 	} 
 
@@ -25,5 +25,6 @@ public class ProcessingActivity extends FragmentActivity {
 		ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 		ft.commit();
 
-	} 
+	}  
+	
 }

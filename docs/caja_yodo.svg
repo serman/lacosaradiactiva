@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="297mm"
+   height="210mm"
+   id="svg3012"
+   version="1.1"
+   inkscape:version="0.48.2 r9819"
+   sodipodi:docname="caja_yodo.svg">
+  <defs
+     id="defs3014" />
+  <sodipodi:namedview
+     inkscape:document-units="mm"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="3.7027454"
+     inkscape:cx="245.73658"
+     inkscape:cy="642.68529"
+     inkscape:current-layer="layer1"
+     id="namedview3016"
+     showgrid="false"
+     inkscape:window-width="1436"
+     inkscape:window-height="856"
+     inkscape:window-x="51"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata3018">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#ffffff;fill-opacity:0.54901961;stroke:#000000;stroke-width:0.35433072;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.54901961;stroke-dasharray:4.2519685, 4.2519685;stroke-dashoffset:0"
+       d="m 109.9375,82.06021 0,0.09375 -9.40625,0 -3.6875,7.34375 -15.625,0 0,22.09375 22.0625,0.90625 6.65625,5.3125 0,4.375 297,0 0,-4.0625 7.0625,-5.625 22.0625,-0.90625 0,-22.09375 -15.625,0 -3.6875,-7.34375 -9.8125,0 0,-0.09375 -297,0 z"
+       id="rect3023"
+       inkscape:connector-curvature="0" />
+    <rect
+       y="122.25288"
+       x="109.96645"
+       height="211.16351"
+       width="296.99997"
+       id="rect3837"
+       style="fill:#ffffff;fill-opacity:0.54901960999999999;stroke:#000000;stroke-width:0.35433071;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.54901960999999999;stroke-dasharray:4.2519685,4.2519685;stroke-dashoffset:0" />
+    <rect
+       style="fill:#ffffff;fill-opacity:0.54901960999999999;stroke:#000000;stroke-width:0.35433071;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.54901960999999999;stroke-dasharray:4.2519685,4.2519685;stroke-dashoffset:0"
+       id="rect3843"
+       width="296.99997"
+       height="211.16351"
+       x="109.96645"
+       y="378.25287" />
+    <rect
+       y="122.61138"
+       x="407.03134"
+       height="211.28601"
+       width="38.682938"
+       id="rect3847"
+       style="fill:#ffffff;fill-opacity:0.54901960999999999;stroke:#000000;stroke-width:0.35433071;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.54901960999999999;stroke-dasharray:4.2519685,4.2519685;stroke-dashoffset:0" />
+    <path
+       style="fill:#ffffff;fill-opacity:0.54901960999999999;stroke:#000000;stroke-width:0.35433071;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.54901960999999999;stroke-dasharray:4.2519685,4.2519685;stroke-dashoffset:0"
+       d="M 445.03125 122.59375 L 445.03125 333.90625 L 446.03125 333.90625 L 480.1875 317.15625 L 480.1875 132.875 L 446.15625 123.15625 L 447.3125 122.59375 L 445.03125 122.59375 z "
+       id="rect3851" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.35433071;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:4.2519685,4.2519685;stroke-dashoffset:0"
+       d="M 109.96875 334.25 L 109.96875 339.09375 C 99.939138 338.86145 95.655767 338.46875 83.03125 338.46875 L 82.9375 363.21875 L 105 364.21875 L 109.96875 368.53125 L 109.96875 377.78125 L 406.96875 377.78125 L 406.96875 369.8125 L 413.40625 364.21875 L 435.46875 363.21875 L 435.375 338.46875 C 422.10837 338.46875 418.1922 338.90202 406.96875 339.125 L 406.96875 334.25 L 109.96875 334.25 z "
+       id="path3871" />
+    <path
+       id="path3924"
+       d="m 407.13146,589.58506 -298.26975,0 0,0.99843 23.6428,34.10255 260.11485,0 13.71812,-33.97775 0.79398,1.15444 0,-2.27767 z"
+       style="fill:#ffffff;fill-opacity:0.54901960999999999;stroke:#000000;stroke-width:0.35433071;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.54901960999999999;stroke-dasharray:4.2519685,4.2519685;stroke-dashoffset:0"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="fill:#ffffff;fill-opacity:0.54901960999999999;stroke:#000000;stroke-width:0.35433071;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.54901960999999999;stroke-dasharray:4.2519685,4.2519685;stroke-dashoffset:0"
+       id="rect3945"
+       width="38.682938"
+       height="211.28601"
+       x="-109.72581"
+       y="377.15225"
+       transform="scale(-1,1)" />
+    <path
+       id="path3947"
+       d="m 71.725889,377.13461 0,211.3125 -1,0 -34.15625,-16.75 0,-184.28125 34.03125,-9.71875 -1.15625,-0.5625 2.28125,0 z"
+       style="fill:#ffffff;fill-opacity:0.54901960999999999;stroke:#000000;stroke-width:0.35433071;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.54901960999999999;stroke-dasharray:4.2519685,4.2519685;stroke-dashoffset:0"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Roboto;-inkscape-font-specification:Roboto"
+       x="124.52922"
+       y="163.7413"
+       id="text3949"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3951"
+         x="124.52922"
+         y="163.7413">La Cosa</tspan><tspan
+         sodipodi:role="line"
+         x="124.52922"
+         y="213.7413"
+         id="tspan3953">Radioactiva</tspan></text>
+  </g>
+</svg>

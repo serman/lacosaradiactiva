@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-	xmlns:android="http://schemas.android.com/apk/res/android"
-	android:orientation="vertical"
-	android:layout_width="fill_parent"
-	android:layout_height="fill_parent">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
 
-	<SurfaceView
-		android:id="@+id/CameraView"
-		android:layout_width="fill_parent"
-	 	android:layout_height="fill_parent">
-	 </SurfaceView>
+    <SurfaceView
+        android:id="@+id/CameraView"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+    </SurfaceView>
 
+    <!--
 	<LinearLayout
 		android:orientation="horizontal"
 		android:layout_width="fill_parent"
@@ -58,11 +58,6 @@
 		</LinearLayout> 
 		
 	</LinearLayout>
+    -->
 
-		
-    <fragment
-	    android:name="net.sweetmonster.pruebaalarma.WebViewFragment"
-	    android:layout_width="match_parent"
-	    android:layout_height="match_parent" />
-    
 </RelativeLayout>

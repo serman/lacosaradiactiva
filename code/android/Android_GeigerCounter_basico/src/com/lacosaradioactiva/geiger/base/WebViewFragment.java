@@ -30,7 +30,7 @@ public class WebViewFragment extends Fragment {
 	private WebView mWebView;
 	private String uiPath;
 	// private String url = "file:/sdcard/Portfolio/_site/index.html";
-	private String url = "file:///android_asset/qq.html";
+	private String url = "http://192.168.1.43:8081/static/livecoding/index.html#html,client";
 	//private String url = "http://www.google.es";
 
 	public WebViewFragment() {
@@ -43,7 +43,7 @@ public class WebViewFragment extends Fragment {
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
+			Bundle savedInstanceState) { 
 
 		return inflater.inflate(R.layout.webviewmanual, container, false);
 	}

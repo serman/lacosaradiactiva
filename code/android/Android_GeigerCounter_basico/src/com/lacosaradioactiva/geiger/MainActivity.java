@@ -3,21 +3,23 @@ package com.lacosaradioactiva.geiger;
 import java.util.List;
 import java.util.Vector;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceActivity;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
 
 import com.lacosaradioactiva.geiger.base.BaseActivity;
 import com.lacosaradioactiva.geiger.base.WebViewFragment;
-import com.lacosaradioactiva.geiger.processing.ProcessingSketch;
 
 public class MainActivity extends BaseActivity {
 
 	private static final String TAG = "MainActivity";
 
-	private static final int FIRST_ITEM = 1;
+	private static final int FIRST_ITEM = 0;
 
 	MenuAdapter cpa;
 	ViewPager mViewPager;
@@ -35,9 +37,10 @@ public class MainActivity extends BaseActivity {
 		setContentView(R.layout.main);
 
 		initialisePaging(); 
+//		addProcessingSketch(new ProcessingSketch(), R.id.f1); 
 
-		// startActivity(new Intent(getApplicationContext(),
-		// CirclesView.class));
+
+	//	 startActivity(new Intent(getApplicationContext(), PreferenceActivity.class));
 	
 
 	}
@@ -65,9 +68,10 @@ public class MainActivity extends BaseActivity {
 		});
 
 		List<Fragment> fragments = new Vector<Fragment>();
+		fragments.add(Fragment.instantiate(this, BootScreenFragment.class.getName()));
 		fragments.add(Fragment.instantiate(this, WebViewFragment.class.getName()));
 		fragments.add( Fragment.instantiate(this, CounterFragment.class.getName()));
-		fragments.add( Fragment.instantiate(this, ProcessingSketch.class.getName()));
+		//fragments.add( Fragment.instantiate(this, ProcessingSketch.class.getName()));
 
 
 		
@@ -76,9 +80,26 @@ public class MainActivity extends BaseActivity {
 
 		// cpa.setReferenceView(mViewPager);
 		mViewPager.setAdapter(this.cpa);
-		mViewPager.setCurrentItem(FIRST_ITEM); 
+		mViewPager.setCurrentItem(FIRST_ITEM);  
+
+		addProcessingSketch(new CameraFragment(), R.id.f1); 
+		//addProcessingSketch(new ProcessingSketch(), R.id.f1);
+
 	}
 
+	public void changePage() { 
+		mViewPager.setCurrentItem(1, true); 
+	}
+
+	public void addProcessingSketch(Fragment processing, int fragmentPosition) {
+
+		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+		ft.add(fragmentPosition, processing);
+		ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
+		ft.commit();
+
+	}  
+	
 	
 	@Override
 	protected void onStart() {

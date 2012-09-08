@@ -21,7 +21,14 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
     <uses-feature android:name="android.hardware.usb.accessory" />
     <uses-feature
         android:name="android.hardware.sensor.compass"
@@ -37,37 +44,29 @@
         android:theme="@style/themegeigercounter" >
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="sensor"
             android:launchMode="singleInstance" >
             <intent-filter>
                 <action android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED" />
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
             <meta-data
                 android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED"
                 android:resource="@xml/accessory_filter" />
         </activity>
-      
         <activity android:name=".processing.ProcessingActivity" >
         </activity>
-      
         <activity android:name=".maps.MyMapActivity" >
         </activity>
-        <activity
-            android:name=".BootScreenActivity"
-            android:screenOrientation="portrait" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+      
         <activity
             android:name=".PreferencesActivity"
             android:screenOrientation="behind" >
         </activity>
 
         <uses-library android:name="com.google.android.maps" />
-
     </application>
 
 </manifest>

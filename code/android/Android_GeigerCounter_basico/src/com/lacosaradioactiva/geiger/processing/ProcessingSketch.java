@@ -9,21 +9,20 @@ public class ProcessingSketch extends PApplet {
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState); 
-		
-	
+		super.onCreate(savedInstanceState);
+
 	}
 
-	
 	PFont font;
 
 	public void setup() {
 		frameRate(28);
 		smooth();
 		font = createFont("Verdana-Bold", 48);
-		//background(250, 250, 205);
-		
-	} 
+		// background(250, 250, 205);
+		background(0);
+		noStroke();
+	}
 
 	public void draw() { // background(255);
 
@@ -31,22 +30,22 @@ public class ProcessingSketch extends PApplet {
 			Looper.prepare();
 		}
 
-		background(250, 250, 205, 255);
+		fill(0, 12);
+		rect(0, 0, width, height);
 
-		fill(255);
 		// you have to set a font first!
 		textFont(font);
 
-		//pushMatrix();
-		//translate(width / 2, height / 2);
-		ellipse(mouseX, mouseY, 100, 100);
-
-		//popMatrix();
+		// pushMatrix();
+		// translate(width / 2, height / 2);
+		for (int i = 0; i < 52; i++) {
+			fill(random(125, 255));
+			ellipse(random(width), random(height), 2, 2);
+		} 
+		
+		// popMatrix();
 
 	}
-
-	
-
 
 	/*
 	 * public int sketchWidth() { return 500; }
