@@ -8,15 +8,18 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class BootScreenFragment extends Fragment { 
+public class BootScreenFragment extends Fragment {
 
 	protected int _splashTime = 2250;
 	protected Handler _exitHandler = null;
 	protected Runnable _exitRunnable = null;
 	private View v;
 
-	/** Called when the activity is first created. 
-	 * @return */
+	/**
+	 * Called when the activity is first created.
+	 * 
+	 * @return
+	 */
 
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -25,26 +28,30 @@ public class BootScreenFragment extends Fragment {
 
 		v = inflater.inflate(R.layout.bootscreen, container, false);
 		return v;
-		
-	} 
-	
-	public void onActivityCreated(Bundle savedInstanceState) { 
-		super.onActivityCreated(savedInstanceState); 
+
+	}
+
+	public void onActivityCreated(Bundle savedInstanceState) {
+		super.onActivityCreated(savedInstanceState);
 
 		// Runnable exiting the splash screen and launching the menu
-		
-		
+
 		_exitRunnable = new Runnable() {
 			public void run() {
-				exitSplash(); 
+				exitSplash();
 			}
 		};
 
 		// Run the exitRunnable in in _splashTime ms
 		_exitHandler = new Handler();
-		_exitHandler.postDelayed(_exitRunnable, _splashTime);
-	}
 
+		if (MainApp.isRunning() == false) {
+			_exitHandler.postDelayed(_exitRunnable, _splashTime);
+			MainApp.setRunning(true); 
+		} 
+		
+
+	}
 
 	public boolean onTouchEvent(MotionEvent event) {
 		if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -56,8 +63,9 @@ public class BootScreenFragment extends Fragment {
 		return true;
 	}
 
-	private void exitSplash() { 
-		((MainActivity) getActivity()).changePage();
-		
-	} 
-} 
+	private void exitSplash() {
+		if (MainApp.isRunning() == false) {
+			((MainActivity) getActivity()).changePage();
+		}
+	}
+}

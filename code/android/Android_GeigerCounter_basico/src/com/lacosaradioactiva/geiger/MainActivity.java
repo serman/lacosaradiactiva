@@ -69,7 +69,7 @@ public class MainActivity extends BaseActivity {
 
 		List<Fragment> fragments = new Vector<Fragment>();
 		fragments.add(Fragment.instantiate(this, BootScreenFragment.class.getName()));
-		fragments.add(Fragment.instantiate(this, WebViewFragment.class.getName()));
+		//fragments.add(Fragment.instantiate(this, WebViewFragment.class.getName()));
 		fragments.add( Fragment.instantiate(this, CounterFragment.class.getName()));
 		//fragments.add( Fragment.instantiate(this, ProcessingSketch.class.getName()));
 
@@ -82,7 +82,8 @@ public class MainActivity extends BaseActivity {
 		mViewPager.setAdapter(this.cpa);
 		mViewPager.setCurrentItem(FIRST_ITEM);  
 
-		addProcessingSketch(new CameraFragment(), R.id.f1); 
+		//addProcessingSketch(new CameraFragment(), R.id.f1); 
+		//addProcessingSketch(new VideoPlayerFragment(), R.id.f1); 
 		//addProcessingSketch(new ProcessingSketch(), R.id.f1);
 
 	}

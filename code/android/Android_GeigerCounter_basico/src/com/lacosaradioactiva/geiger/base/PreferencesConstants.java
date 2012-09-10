@@ -41,8 +41,8 @@ public class PreferencesConstants {
 
 		PreferenceManager.setDefaultValues(c, R.xml.preferences, false);
 		SharedPreferences p = PreferenceManager.getDefaultSharedPreferences(c);
-		// p.edit().clear();
-		// p.edit().commit();
+		p.edit().clear();
+		p.edit().commit();
 
 		PreferencesConstants.fullscreen = p.getBoolean(PreferencesConstants.FULLSCREEN, true);
 		PreferencesConstants.lock = p.getBoolean(PreferencesConstants.LOCK, true);
@@ -80,7 +80,7 @@ public class PreferencesConstants {
 		editor.putInt(PreferencesConstants.UPDATED, PreferencesConstants.version);
 		editor.commit();
 
-	}
+	} 
 
 
 	public void clear(Context c) { 

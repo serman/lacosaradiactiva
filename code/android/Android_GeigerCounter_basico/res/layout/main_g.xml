@@ -65,8 +65,10 @@
         android:id="@+id/valuesInstantaneo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/labelInstantaneoGroup"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="0dp" >
+        android:layout_marginLeft="0dp"
+        android:gravity="center" >
 
         <TextView
             android:id="@+id/current_usv_display"
@@ -80,7 +82,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/microsievert_hour"
-            android:textSize="20sp" />
+            android:textSize="12sp" />
     </LinearLayout>
 
     <!-- media cpm -->
@@ -131,7 +133,7 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/valuesMediaUSH"
         android:layout_marginLeft="22dp"
-        android:layout_marginTop="62dp" /> 
+        android:layout_marginTop="62dp" /> 
     -->
 
     <LinearLayout
@@ -139,7 +141,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:visibility="visible" >
 
         <Button
@@ -167,7 +169,8 @@
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@drawable/custom_button"
-            android:text="launch p5" />
+            android:text="launch p5"
+            android:visibility="gone" />
     </LinearLayout>
 
     <LinearLayout
@@ -175,14 +178,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/labelMediaCPMGroup" >
+        android:layout_below="@+id/labelMediaCPMGroup"
+        android:layout_marginTop="15dp" >
 
         <LinearLayout
             android:id="@+id/valuesMediaCPM"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginLeft="0dp"
-            android:layout_weight="1" >
+            android:layout_weight="1"
+            android:gravity="center" >
 
             <TextView
                 android:id="@+id/current_cpm_display"
@@ -196,7 +202,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/counts_per_minute"
-                android:textSize="20sp" />
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -205,7 +211,8 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginLeft="0dp"
-            android:layout_weight="1" >
+            android:layout_weight="1"
+            android:gravity="center" >
 
             <TextView
                 android:id="@+id/average_usv_display"
@@ -219,7 +226,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/microsievert_hour"
-                android:textSize="20sp" />
+                android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -231,5 +238,19 @@
         android:layout_below="@+id/valuesMedia"
         android:layout_marginTop="30dp"
         android:background="@android:color/transparent" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/linearLayout1"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/graphview"
+        android:layout_below="@+id/graphview"
+        android:hint="Write notes for this position"
+        android:inputType="textMultiLine" >
+
+        <requestFocus />
+    </EditText>
 
 </RelativeLayout>
