@@ -84,7 +84,6 @@ import android.net.Uri;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.app.Fragment;
 import android.text.format.Time;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -98,8 +97,10 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.lacosaradioactiva.geiger.base.BaseFragment;
 
-public class PApplet extends Fragment implements PConstants, Runnable {
+
+public class PApplet extends BaseFragment implements PConstants, Runnable {
   /** The PGraphics renderer associated with this PApplet */
   public PGraphics g;
 

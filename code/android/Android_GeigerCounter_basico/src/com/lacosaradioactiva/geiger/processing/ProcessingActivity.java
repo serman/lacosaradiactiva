@@ -1,8 +1,9 @@
 package com.lacosaradioactiva.geiger.processing;
 
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
 
 import com.lacosaradioactiva.geiger.R;
 
@@ -18,9 +19,9 @@ public class ProcessingActivity extends FragmentActivity {
 
 	} 
 
-	public void addProcessingSketch(ProcessingSketch processing, int fragmentPosition) {
+	public void addProcessingSketch(Fragment processing, int fragmentPosition) {
 
-		FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+		FragmentTransaction ft = getFragmentManager().beginTransaction();
 		ft.add(fragmentPosition, processing);
 		ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
 		ft.commit();

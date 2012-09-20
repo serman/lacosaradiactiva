@@ -79,12 +79,15 @@ public class GeigerModel extends Observable  {
 	private LinkedList<Integer> q1;			// FIFO to hold cpm measures got from Arduino
 	private final Q q = new Q(MAX_QUEUE_SIZE);  // Main queue for holding primary measured raw values
 	private final Q q2 = new Q(MAX_QUEUE_SIZE_2);  // Secondary queue for calculating average (N measures)
-
-
+	
+	//osc 
+	private OSC osc;
 
 	
 	public GeigerModel(){
 		super();
+		
+		osc = new OSC(); 
 		//setChanged();	//TODO: This is temporal
 	}
 	
@@ -140,6 +143,7 @@ public class GeigerModel extends Observable  {
 
 		
 		setChanged();
+		osc.sendParam(cpm1min, cpm10min, usv1min, usv10min); 
 		notifyObservers();
 	}
 	

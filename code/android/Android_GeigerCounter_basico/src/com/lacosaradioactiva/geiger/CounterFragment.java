@@ -7,7 +7,12 @@ import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
+import netP5.NetAddress;
+
+import oscP5.OscP5;
+
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -18,7 +23,6 @@ import android.hardware.usb.UsbManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.ParcelFileDescriptor;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -36,12 +40,11 @@ import com.lacosaradioactiva.geiger.data.PachubeUpdate;
 import com.lacosaradioactiva.geiger.data.RandomGenerator;
 import com.lacosaradioactiva.geiger.processing.ProcessingActivity;
 
-
 /* 
  * NOTAS: he quitado seqDisplay porque no sab’a lo que era 
  * 
  * 
- */ 
+ */
 
 public class CounterFragment extends Fragment implements Runnable, Observer {
 
@@ -52,7 +55,7 @@ public class CounterFragment extends Fragment implements Runnable, Observer {
 	// View attributes
 	private TextView currentUsvDisplay;
 	private TextView currentCpmDisplay;
-	//private TextView seqDisplay;
+	// private TextView seqDisplay;
 	private TextView averageUsvDisplay;
 	private TextView lonDisplay;
 
@@ -73,6 +76,12 @@ public class CounterFragment extends Fragment implements Runnable, Observer {
 	// pachube & Red
 	private PachubeUpdate mPachube;
 
+
+	String remoteIP = "192.168.1.10";
+	int remotePort = 12002;
+	boolean connected = false;
+
+	
 	// *************************************** USB management
 	private UsbManager musbManager;
 	private UsbAccessory musbAccessory;
@@ -89,18 +98,15 @@ public class CounterFragment extends Fragment implements Runnable, Observer {
 			String action = intent.getAction();
 			if (ACTION_USB_PERMISSION.equals(action)) {
 				synchronized (this) {
-					UsbAccessory accessory = (UsbAccessory) intent
-							.getParcelableExtra(UsbManager.EXTRA_ACCESSORY);
+					UsbAccessory accessory = (UsbAccessory) intent.getParcelableExtra(UsbManager.EXTRA_ACCESSORY);
 
-					if (intent.getBooleanExtra(
-							UsbManager.EXTRA_PERMISSION_GRANTED, false)) {
+					if (intent.getBooleanExtra(UsbManager.EXTRA_PERMISSION_GRANTED, false)) {
 						if (accessory != null) {
 							// call method to set up accessory communication
 							closeAccessory();
 						}
 					} else {
-						Log.d(TAG, "permission denied for accessory "
-								+ accessory);
+						Log.d(TAG, "permission denied for accessory " + accessory);
 					}
 				}
 			}
@@ -114,9 +120,9 @@ public class CounterFragment extends Fragment implements Runnable, Observer {
 		UsbAccessory[] accessoryList = manager.getAccessoryList();
 	}
 
-	private void openAccessory( ){
+	private void openAccessory() {
 		Log.d(TAG, "openAccessory() starting into : " + musbAccessory);
-		
+
 		UsbManager musbManager = (UsbManager) mContext.getSystemService(Context.USB_SERVICE);
 		fileDescriptor = musbManager.openAccessory(musbAccessory);
 
@@ -151,8 +157,6 @@ public class CounterFragment extends Fragment implements Runnable, Observer {
 
 	// ****************************** USB
 
-	
-	
 	// Model
 	private final GeigerModel model = new GeigerModel();
 	private Button pachubeButton;
@@ -191,9 +195,8 @@ public class CounterFragment extends Fragment implements Runnable, Observer {
 	 * @return
 	 */
 	@Override
-	public View onCreateView(LayoutInflater inflater, ViewGroup container,
-			Bundle savedInstanceState) {
-		
+	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+
 		super.onCreateView(inflater, container, savedInstanceState);
 		Log.d(TAG, "onCreateView()");
 		View v = inflater.inflate(R.layout.main_g, null);
@@ -201,11 +204,10 @@ public class CounterFragment extends Fragment implements Runnable, Observer {
 		// Get View handlers
 		currentUsvDisplay = (TextView) v.findViewById(R.id.current_usv_display);
 		currentCpmDisplay = (TextView) v.findViewById(R.id.current_cpm_display);
-		//seqDisplay = (TextView) v.findViewById(R.id.seq_num);
+		// seqDisplay = (TextView) v.findViewById(R.id.seq_num);
 		lonDisplay = (TextView) v.findViewById(R.id.gps_lon);
 		averageUsvDisplay = (TextView) v.findViewById(R.id.average_usv_display);
 
-		
 		// TODO: temp test: trigger ACTION_USB_PERMISSION from buttom
 		rec = (Button) v.findViewById(R.id.record_button);
 		rec.setOnClickListener(new OnClickListener() {
@@ -227,8 +229,13 @@ public class CounterFragment extends Fragment implements Runnable, Observer {
 				}
 			}
 		});
+<<<<<<< HEAD
 	
 		/*pachubeButton = (Button) v.findViewById(R.id.sendPachube);
+=======
+
+		pachubeButton = (Button) v.findViewById(R.id.sendPachube);
+>>>>>>> many changes :P
 		pachubeButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				// mPachube.execute("30", "0.09","52");
@@ -239,6 +246,7 @@ public class CounterFragment extends Fragment implements Runnable, Observer {
 					pachubeButton.setText("StartPachube");
 				}
 			}
+<<<<<<< HEAD
 		}); */
 		
 		gpsButton = (Button) v.findViewById(R.id.GPS_button);
@@ -258,14 +266,22 @@ public class CounterFragment extends Fragment implements Runnable, Observer {
 		
 		
 		Button p5 = (Button) v.findViewById(R.id.launch_processing); 
+=======
+		});
+
+		Button p5 = (Button) v.findViewById(R.id.launch_processing);
+>>>>>>> many changes :P
 		p5.setOnClickListener(new OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
-				startActivity(new Intent(mContext, ProcessingActivity.class)); 
+				startActivity(new Intent(mContext, ProcessingActivity.class));
 			}
 		});
 
+
+
+		
 		return v;
 	}
 
@@ -305,20 +321,19 @@ public class CounterFragment extends Fragment implements Runnable, Observer {
 		if (inputStream != null) {
 			return;
 		}
-		Log.d(TAG,"onResume() : justo antes : " + musbManager.toString());
-		
-		  UsbAccessory[] accessories = musbManager.getAccessoryList();
-		  musbAccessory = (accessories == null ? null : accessories[0]);
-		  Log.d(TAG,"onResume() : accessory got from USB enumeration : " +musbAccessory); 
-		  if (musbAccessory != null) { 
-			  if(musbManager.hasPermission(musbAccessory)) {
-				  	Log.d(TAG,"onResume() : We HAVE permission for accessory : " +musbAccessory); 
-				  	openAccessory(	); 
+		Log.d(TAG, "onResume() : justo antes : " + musbManager.toString());
+
+		UsbAccessory[] accessories = musbManager.getAccessoryList();
+		musbAccessory = (accessories == null ? null : accessories[0]);
+		Log.d(TAG, "onResume() : accessory got from USB enumeration : " + musbAccessory);
+		if (musbAccessory != null) {
+			if (musbManager.hasPermission(musbAccessory)) {
+				Log.d(TAG, "onResume() : We HAVE permission for accessory : " + musbAccessory);
+				openAccessory();
 			} else {
-				Log.d(TAG,"onResume() : We NEED permission for accessory : "+musbAccessory); 
-		   }
-		  }
-		
+				Log.d(TAG, "onResume() : We NEED permission for accessory : " + musbAccessory);
+			}
+		}
 
 	}
 
@@ -360,7 +375,7 @@ public class CounterFragment extends Fragment implements Runnable, Observer {
 	}
 
 	public void run() {
-		Log.d(TAG,"run()");
+		Log.d(TAG, "run()");
 		while (fileDescriptor != null) {
 			int ret = 0;
 			byte[] buffer = new byte[16384];
@@ -422,7 +437,7 @@ public class CounterFragment extends Fragment implements Runnable, Observer {
 	}
 
 	private void displaySeq() {
-		//seqDisplay.setText("" + sequenceNumber);
+		// seqDisplay.setText("" + sequenceNumber);
 	}
 
 	public void update(Observable observable, Object data) {
@@ -443,12 +458,10 @@ public class CounterFragment extends Fragment implements Runnable, Observer {
 	private void recordValues() {
 		// if(model.getSeqNum())
 		if (state_locationEnabled && mGeopos.isFresh()) {
-			mRecorder.addData(model.getCpm1min(), model.getSeqNum(),
-					model.getUsv1min(), mGeopos.getLongitude(),
+			mRecorder.addData(model.getCpm1min(), model.getSeqNum(), model.getUsv1min(), mGeopos.getLongitude(),
 					mGeopos.getLatitude());
 		} else {
-			mRecorder.addData(model.getCpm1min(), model.getSeqNum(),
-					model.getUsv1min());
+			mRecorder.addData(model.getCpm1min(), model.getSeqNum(), model.getUsv1min());
 		}
 
 	}
@@ -460,8 +473,7 @@ public class CounterFragment extends Fragment implements Runnable, Observer {
 			// Double.toString(mGeopos.getLongitude()),Double.toString(mGeopos.getLatitude()));
 			mPachube = new PachubeUpdate(mContext, "key");
 			if (state_locationEnabled)
-				mPachube.execute(Integer.toString(model.getCpm1min()),
-						Double.toString(mGeopos.getLongitude()),
+				mPachube.execute(Integer.toString(model.getCpm1min()), Double.toString(mGeopos.getLongitude()),
 						Double.toString(mGeopos.getLatitude()));
 			else {
 				mPachube.execute(Integer.toString(model.getCpm1min()), "0", "0");
@@ -484,7 +496,7 @@ public class CounterFragment extends Fragment implements Runnable, Observer {
 		}
 
 		currentCpmDisplay.setText("" + cpm1min);
-		//seqDisplay.setText("" + seqNum);
+		// seqDisplay.setText("" + seqNum);
 		lonDisplay.setText("lon:" + mGeopos.getLongitude());
 		currentUsvDisplay.setText(String.format("%.2f", usv1min));
 		averageUsvDisplay.setText(String.format("%.2f", usv10min));
