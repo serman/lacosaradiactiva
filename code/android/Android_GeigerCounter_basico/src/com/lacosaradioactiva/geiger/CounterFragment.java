@@ -164,6 +164,8 @@ public class CounterFragment extends Fragment implements Runnable, Observer {
 
 	private PendingIntent mPermissionIntent;
 
+	private Button cosmButton;
+
 	public boolean onCreateOptionsMenu(Menu menu) {
 
 		menu.add(0, 1, 0, "Enable GPS");
@@ -229,14 +231,12 @@ public class CounterFragment extends Fragment implements Runnable, Observer {
 				}
 			}
 		});
-<<<<<<< HEAD
-	
-		/*pachubeButton = (Button) v.findViewById(R.id.sendPachube);
-=======
 
-		pachubeButton = (Button) v.findViewById(R.id.sendPachube);
->>>>>>> many changes :P
-		pachubeButton.setOnClickListener(new OnClickListener() {
+
+
+		cosmButton = (Button) v.findViewById(R.id.cosm_button);
+
+		cosmButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				// mPachube.execute("30", "0.09","52");
 				pachubeEnabled = !pachubeEnabled;
@@ -246,8 +246,8 @@ public class CounterFragment extends Fragment implements Runnable, Observer {
 					pachubeButton.setText("StartPachube");
 				}
 			}
-<<<<<<< HEAD
-		}); */
+
+		}); 
 		
 		gpsButton = (Button) v.findViewById(R.id.GPS_button);
 		gpsButton.setOnClickListener(new OnClickListener() {
@@ -264,13 +264,10 @@ public class CounterFragment extends Fragment implements Runnable, Observer {
 			}
 		}); 
 		
-		
-		Button p5 = (Button) v.findViewById(R.id.launch_processing); 
-=======
-		});
+	
 
 		Button p5 = (Button) v.findViewById(R.id.launch_processing);
->>>>>>> many changes :P
+
 		p5.setOnClickListener(new OnClickListener() {
 
 			@Override
