@@ -1,10 +1,12 @@
 package com.lacosaradioactiva.geiger.data;
 
 import android.content.Context;
+import android.content.Intent;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -25,7 +27,6 @@ public class Geoposition  {
 	public void start(){
 		Log.d("qq","Starting gps ");
 		// Acquire a reference to the system Location Manager
-		
 
 		// Define a listener that responds to location updates
 		 locationListener = new LocationListener() {
@@ -33,13 +34,9 @@ public class Geoposition  {
 		      // Called when a new location is found by the network location provider.
 		      makeUseOfNewLocation(location);
 		    }
-
-
 		    public void onProviderEnabled(String provider) {}
 		    public void onStatusChanged(String provider, int status, Bundle extras) {}
 		    public void onProviderDisabled(String provider) {}
-
-
 		  };
 
 		// Register the listener with the Location Manager to receive location updates

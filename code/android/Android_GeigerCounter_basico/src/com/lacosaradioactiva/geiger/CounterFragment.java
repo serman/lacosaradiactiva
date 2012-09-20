@@ -60,10 +60,13 @@ public class CounterFragment extends Fragment implements Runnable, Observer {
 	private final Handler handler = new Handler();
 	private int sequenceNumber = 0;
 
+	private Button gpsButton;
+	
 	// DataRecorder
 	private DataRecorder mRecorder;
 	private Geoposition mGeopos;
 	private Button rec;
+	
 	private boolean state_recording = false;
 	private boolean state_locationEnabled = false;
 
@@ -225,7 +228,7 @@ public class CounterFragment extends Fragment implements Runnable, Observer {
 			}
 		});
 	
-		pachubeButton = (Button) v.findViewById(R.id.sendPachube);
+		/*pachubeButton = (Button) v.findViewById(R.id.sendPachube);
 		pachubeButton.setOnClickListener(new OnClickListener() {
 			public void onClick(View v) {
 				// mPachube.execute("30", "0.09","52");
@@ -236,7 +239,23 @@ public class CounterFragment extends Fragment implements Runnable, Observer {
 					pachubeButton.setText("StartPachube");
 				}
 			}
+		}); */
+		
+		gpsButton = (Button) v.findViewById(R.id.GPS_button);
+		gpsButton.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				if (state_locationEnabled == true) {
+					gpsButton.setText("Enable GPS");
+					mGeopos.stop();
+					state_locationEnabled = false;
+				} else {
+					state_locationEnabled = true;
+					gpsButton.setText("Disable GPS");
+					mGeopos.start();
+				}
+			}
 		}); 
+		
 		
 		Button p5 = (Button) v.findViewById(R.id.launch_processing); 
 		p5.setOnClickListener(new OnClickListener() {

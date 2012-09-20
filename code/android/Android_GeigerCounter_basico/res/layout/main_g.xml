@@ -143,15 +143,15 @@
         android:layout_alignParentBottom="true"
         android:orientation="horizontal"
         android:visibility="visible" >
-
+
         <Button
-            android:id="@+id/sendPachube"
+            android:id="@+id/GPS_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@drawable/custom_button"
-            android:text="Pachube" />
+            android:text="GPS" />
 
         <Button
             android:id="@+id/record_button"
@@ -238,19 +238,14 @@
         android:layout_below="@+id/valuesMedia"
         android:layout_marginTop="30dp"
         android:background="@android:color/transparent" />
-
-    <EditText
-        android:id="@+id/editText1"
+
+    <TextView
+        android:id="@id/average_usv_display"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/linearLayout1"
-        android:layout_alignParentLeft="true"
-        android:layout_alignRight="@+id/graphview"
+        android:layout_alignLeft="@+id/valuesInstantaneo"
         android:layout_below="@+id/graphview"
-        android:hint="Write notes for this position"
-        android:inputType="textMultiLine" >
-
-        <requestFocus />
-    </EditText>
+        android:layout_marginTop="52dp"
+        android:text="TextView" />
 
 </RelativeLayout>

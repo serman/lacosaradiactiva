@@ -90,7 +90,7 @@ public class DataRecorder {
 	
 	public boolean addData (int cpm, int seq, float sieverts) {
 		try {
-			fos.writeUTF(seq + "," + cpm + ","+sieverts+",0,0"+ "\n" );
+			fos.writeUTF(seq + " ---- " + cpm + " ---- "+sieverts+" ---- 0 ---- 0"+ "\n" );
 		} catch (IOException e) {
 				Log.d("qq","error in addDAta: ");
 				e.printStackTrace();
@@ -100,7 +100,7 @@ public class DataRecorder {
 	}
 	public boolean addData (int cpm, int seq, float sieverts,  double lon, double lat) {
 		try {
-			fos.writeUTF(seq + "," + cpm +","+sieverts+ ","+ lon+ "," +lat+ "\n" );
+			fos.writeUTF(seq + " ---- " + cpm +" ---- "+sieverts+ " ---- "+ lon+ " ---- " +lat+ "\n" );
 		} catch (IOException e) {
 				Log.d("qq","error in addDAta: ");
 				e.printStackTrace();

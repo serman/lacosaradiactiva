@@ -156,7 +156,7 @@ void loop(){
   
     if ( millis()-timePreviousMeassure_and > 500 ){
          if (acc.isConnected()) {
-         acc.beginTransmission();
+         //acc.beginTransmission();
             msg[0] = 0x1;
             msg[1] = int(count_and) >> 8;
             msg[2] = int(count_and) & 0xff;
@@ -165,7 +165,7 @@ void loop(){
             msg[1] = int(seq_and) >> 8;
             msg[2] = int(seq_and) & 0xff;
             acc.write(msg , 3); 
-        acc.endTransmission();
+        //acc.endTransmission();
       }
       else{
            Serial.println("desconectado"); 
