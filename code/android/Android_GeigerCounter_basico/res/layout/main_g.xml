@@ -22,12 +22,11 @@
     </LinearLayout>
 
     <!-- label instantaneo group -->
-
+
     <LinearLayout
         android:id="@+id/labelInstantaneoGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/linearLayout1"
         android:layout_alignParentTop="true" >
 
         <View
@@ -137,52 +136,6 @@
     -->
 
     <LinearLayout
-        android:id="@+id/linearLayout1"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
-        android:visibility="visible" >
-
-        <Button
-            android:id="@+id/GPS_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/custom_button"
-            android:text="GPS" />
-
-        <Button
-            android:id="@+id/record_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/custom_button"
-            android:text="@string/record_button" />
-
-        
-        <Button
-            android:id="@+id/cosm_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/custom_button"
-            android:text="Cosm" />
-        <Button
-            android:id="@+id/launch_processing"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:background="@drawable/custom_button"
-            android:text="launch p5"
-            android:visibility="gone" />
-    </LinearLayout>
-
-    <LinearLayout
         android:id="@+id/valuesMedia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -247,14 +200,5 @@
         android:layout_below="@+id/valuesMedia"
         android:layout_marginTop="30dp"
         android:background="@android:color/transparent" />
-
-    <TextView
-        android:id="@id/average_usv_display"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/valuesInstantaneo"
-        android:layout_below="@+id/graphview"
-        android:layout_marginTop="52dp"
-        android:text="TextView" />
 
 </RelativeLayout>

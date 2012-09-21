@@ -60,8 +60,8 @@ public class BaseActivity extends FragmentActivity {
 	void getPreferences() {
 
 		//set fullscreen depending on the settings 
-		setFullScreen(PreferencesConstants.fullscreen); 
-		//setScreenLock(PreferencesConstants.lock); 
+		setFullScreen(true); 
+		setScreenLock(true); 
 		setScreenRotation("1"); 
 	
 	} 

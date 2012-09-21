@@ -119,6 +119,8 @@ public class GraphView extends View {
 
 			// canvas.save(Canvas.MATRIX_SAVE_FLAG);
 			paint.setColor(mColors[0]);
+		
+			/* 
 			for (int i = 0; i < 1; i++) {
 
 				for (int j = 0; j < (int) (mLastX - 1); j++) {
@@ -129,6 +131,14 @@ public class GraphView extends View {
 					// sumarle offset y multiplicar por escala
 					canvas.drawLine(j, totalValues[j], j + 1, totalValues[j + 1], paint);
 				}
+			}
+			*/ 
+			
+			for(int i = 0; i < mWidth; i+=3) {
+
+				canvas.drawCircle(i, (float) (mHeight * (Math.random())), (float) (Math.random() * 5), paint);
+
+				
 			}
 
 			// canvas.restore();
@@ -148,12 +158,24 @@ public class GraphView extends View {
 		}
 	}
 
-	public void setVal(float[] values) {
+	public void setVal(float v1, float v2, float v3, float v4) {
 
-		int index = (int) mLastX;
-		totalValues[index] = values[0]; 
+	//	int index = (int) mLastX;
+	//	totalValues[index] = values[0]; 
+		loadDemoValues(); 
+		
 		invalidate();
 
+	} 
+	
+	public void setVal(float[] values) {
+		
+		//	int index = (int) mLastX;
+		//	totalValues[index] = values[0]; 
+		// loadDemoValues(); 
+		
+		invalidate();
+		
 	}
 
 	public void destroy() {

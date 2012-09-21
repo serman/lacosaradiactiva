@@ -81,7 +81,7 @@ public class GeigerModel extends Observable  {
 	private final Q q2 = new Q(MAX_QUEUE_SIZE_2);  // Secondary queue for calculating average (N measures)
 	
 	//osc 
-	private OSC osc;
+	public OSC osc;
 
 	
 	public GeigerModel(){
@@ -142,8 +142,13 @@ public class GeigerModel extends Observable  {
 		}
 
 		
-		setChanged();
-		osc.sendParam(cpm1min, cpm10min, usv1min, usv10min); 
+		setChanged(); 
+		
+		if (osc.isEnabled()) {
+			osc.sendParam(cpm1min, cpm10min, usv1min, usv10min); 
+
+		} 
+		
 		notifyObservers();
 	}
 	

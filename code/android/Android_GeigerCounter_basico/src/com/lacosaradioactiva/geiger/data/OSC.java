@@ -5,26 +5,30 @@ import oscP5.OscEventListener;
 import oscP5.OscMessage;
 import oscP5.OscP5;
 import oscP5.OscStatus;
+import android.util.Log;
 
 public class OSC {
 
 	public OSC() { 
-		connect(); 
+
 
 	}
 
 	OscP5 oscP5;
 	NetAddress myRemoteLocation;
 
-	String remoteIP = "192.168.1.123";
 	int remotePort = 9000;
-	boolean connected = false;
 
-	public void connect() {
+	private boolean isEnabled;
+
+	public void connect(boolean b, String remoteIP) { 
+		
+		this.isEnabled = b; 
+		
 		/* start oscP5, listening for incoming messages at port 12000 */
 		oscP5 = new OscP5(this, 12001);
 		myRemoteLocation = new NetAddress(remoteIP, remotePort);
-		connected = true; 
+
 		
 		oscP5.addListener(new OscEventListener() {
 			
@@ -44,17 +48,10 @@ public class OSC {
 
 	}
 
-
-
-	public void setAddress(String address) { 
-		remoteIP = address; 
-	
-	}
 	
 	public void sendParam(float var1, float var2, float var3, float var4) {
-		if (connected == false)
-			return;
-
+	
+		Log.d("qq", "enviando"); 
 		// myRemoteLocation = new NetAddress("127.0.0.1", 12001);
 
 		/* create a new osc message object */
@@ -67,13 +64,12 @@ public class OSC {
 
 		/* send the message */
 		oscP5.send(myMessage, myRemoteLocation);
+		Log.d("qq", "enviado"); 
 
 	}
 
 	public void sendBang(int q) {
-		if (connected == false)
-			return;
-
+		
 		/* create a new osc message object */
 		OscMessage myMessage = new OscMessage("/playsound");
 
@@ -82,6 +78,12 @@ public class OSC {
 		/* send the message */
 		oscP5.send(myMessage, myRemoteLocation);
 
+	} 
+	
+	public boolean isEnabled() {
+		
+		return isEnabled; 
+		
 	}
 
 }
