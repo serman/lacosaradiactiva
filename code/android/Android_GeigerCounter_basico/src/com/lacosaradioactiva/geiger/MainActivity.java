@@ -30,7 +30,6 @@ import com.lacosaradioactiva.geiger.base.BaseActivity;
 import com.lacosaradioactiva.geiger.data.DataRecorder;
 import com.lacosaradioactiva.geiger.data.GeigerModel;
 import com.lacosaradioactiva.geiger.data.Geoposition;
-import com.lacosaradioactiva.geiger.data.OSC;
 import com.lacosaradioactiva.geiger.data.PachubeUpdate;
 import com.lacosaradioactiva.geiger.data.RandomGenerator;
 import com.lacosaradioactiva.geiger.processing.ProcessingSketch;
@@ -360,10 +359,10 @@ public class MainActivity extends BaseActivity implements Runnable, Observer {
 			// Double.toString(mGeopos.getLongitude()),Double.toString(mGeopos.getLatitude()));
 			mPachube = new PachubeUpdate(mContext, "key");
 			if (state_locationEnabled)
-				mPachube.execute(Integer.toString(model.getCpm1min()), Double.toString(mGeopos.getLongitude()),
+				mPachube.execute(Integer.toString(model.getCpm10min()), Double.toString(mGeopos.getLongitude()),
 						Double.toString(mGeopos.getLatitude()));
 			else {
-				mPachube.execute(Integer.toString(model.getCpm1min()), "0", "0");
+				mPachube.execute(Integer.toString(model.getCpm10min()), "0", "0");
 				Log.d("qq", "Sending message to pachube() with position");
 			}
 		}

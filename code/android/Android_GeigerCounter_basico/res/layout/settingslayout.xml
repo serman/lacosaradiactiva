@@ -81,6 +81,8 @@
                 android:hint="192.168.1.12" />
 
         </LinearLayout>
-    </LinearLayout>
+    <Button android:id="@+id/pachubeOneUpdate" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_below="@+id/linearLayout1" android:layout_centerHorizontal="true" android:text="updatePachube" /></LinearLayout>
+
+    
 
 </RelativeLayout>

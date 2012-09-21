@@ -52,12 +52,22 @@ public class PachubeUpdate extends AsyncTask<String, Void, Void> {
 			location.put( "lat",lat );
 			location.put( "lon",lon);
 			object.put("location", location);
-			
+			object.put("disposition", "mobile");
+			object.put("domain", "physical");
 				JSONObject dataStream1 = new JSONObject();
 					dataStream1.put("current_value" ,sieverts);
-					dataStream1.put("id" ,"movilSergio" );
+					dataStream1.put("id" ,"1" );//valor de medida Id=1
+				JSONObject dataStream2 = new JSONObject();
+					dataStream2.put("current_value" ,lat);
+					dataStream2.put("id" ,"2" );//valor de longitud Id=2
+				JSONObject dataStream3 = new JSONObject();
+					dataStream3.put("current_value" ,lon);
+					dataStream3.put("id" ,"3" );//valor de latitud Id=3	
+					
 					JSONArray dataStreamArray = new JSONArray();
 				dataStreamArray.put(dataStream1);
+				dataStreamArray.put(dataStream2);
+				dataStreamArray.put(dataStream3);
 			object.put("datastreams",dataStreamArray);
 		} catch (JSONException e) {
 			e.printStackTrace();
@@ -89,7 +99,7 @@ public class PachubeUpdate extends AsyncTask<String, Void, Void> {
 	        response.append('\r');
 	      }
 	      rd.close();
-	      Log.d("qq",response.toString());
+	      Log.d("pachube",response.toString());
 	      return;
 		
 		} catch (Exception e) {

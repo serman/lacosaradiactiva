@@ -144,9 +144,8 @@ public class GeigerModel extends Observable  {
 		
 		setChanged(); 
 		
-		if (osc.isEnabled()) {
+		if (osc.isEnabled()) {			
 			osc.sendParam(cpm1min, cpm10min, usv1min, usv10min); 
-
 		} 
 		
 		notifyObservers();

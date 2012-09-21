@@ -26,10 +26,10 @@ public class OSC {
 		this.isEnabled = b; 
 		
 		/* start oscP5, listening for incoming messages at port 12000 */
-		oscP5 = new OscP5(this, 12001);
+		
 		myRemoteLocation = new NetAddress(remoteIP, remotePort);
 
-		
+		oscP5 = new OscP5(this, 12001);
 		oscP5.addListener(new OscEventListener() {
 			
 			@Override
@@ -63,8 +63,15 @@ public class OSC {
 		myMessage.add(var4); /* add an int to the osc message */
 
 		/* send the message */
+		try{
 		oscP5.send(myMessage, myRemoteLocation);
-		Log.d("qq", "enviado"); 
+		}
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			Log.d("err","no se puede enviar");
+		}
+		//Log.d("qq", "enviado"); 
 
 	}
 

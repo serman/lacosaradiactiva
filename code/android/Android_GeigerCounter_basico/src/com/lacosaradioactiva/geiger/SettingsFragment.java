@@ -3,6 +3,7 @@ package com.lacosaradioactiva.geiger;
 import android.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import com.lacosaradioactiva.geiger.data.PachubeUpdate;
 import com.lacosaradioactiva.geiger.processing.ProcessingActivity;
 
 public class SettingsFragment extends Fragment {
@@ -24,6 +26,7 @@ public class SettingsFragment extends Fragment {
 	private Switch recSwitch;
 	private Switch cosmSwitch;
 	private Switch gpsSwitch;
+	private Button cosmButton;
 
 	/**
 	 * Called when the activity is first created.
@@ -77,6 +80,26 @@ public class SettingsFragment extends Fragment {
 			}
 
 		});
+
+		cosmButton = (Button) v.findViewById(R.id.pachubeOneUpdate);
+
+		cosmButton.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				PachubeUpdate mPachube;
+				// mPachube.execute("30", "0.09","52");
+				mPachube = new PachubeUpdate(mContext, "key");
+				if (mContext.state_locationEnabled)
+					mPachube.execute(Integer.toString(mContext.model.getCpm10min()), Double.toString(mContext.mGeopos.getLongitude()),
+							Double.toString(mContext.mGeopos.getLatitude()));
+				else {
+					mPachube.execute(Integer.toString(mContext.model.getCpm10min()), "0", "0");
+					Log.d("qq", "Sending message to pachube() with position");
+				}
+				
+			}
+
+		});
+
 
 		gpsSwitch = (Switch) v.findViewById(R.id.GPS_button);
 		gpsSwitch.setOnClickListener(new OnClickListener() {

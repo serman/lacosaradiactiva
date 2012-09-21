@@ -25,7 +25,7 @@ public class MenuAdapter extends FragmentPagerAdapter {
 
 	@Override
 	public int getCount() {
-		Log.d("el tama–o es: ", "" + fragments.size()); 
+		//Log.d("el tama–o es: ", "" + fragments.size()); 
 		return fragments.size();
 	}
 

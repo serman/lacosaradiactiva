@@ -101,10 +101,10 @@ public class CounterFragment extends Fragment {
 				int seqNum = mContext.model.getSeqNum();
 				float usv1min = mContext.model.getUsv1min();
 				float usv10min = mContext.model.getUsv10min();
-				if (mContext.pachubeEnabled) {
+				/*if (mContext.pachubeEnabled) {
 					if (seqNum % 30 == 0)
 						mContext.sendToPachube();
-				}
+				}*/
 
 				if (seqNum % 3 == 0) {
 					graphView.setVal(cpm1min, seqNum, usv1min, usv10min);
