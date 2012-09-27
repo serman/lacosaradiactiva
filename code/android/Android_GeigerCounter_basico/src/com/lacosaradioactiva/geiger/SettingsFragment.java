@@ -28,6 +28,8 @@ public class SettingsFragment extends Fragment {
 	private Switch gpsSwitch;
 	private Button cosmButton;
 
+	private Button reset;
+
 	/**
 	 * Called when the activity is first created.
 	 * 
@@ -100,6 +102,17 @@ public class SettingsFragment extends Fragment {
 
 		});
 
+		reset = (Button) v.findViewById(R.id.reset);
+		
+		reset.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				mContext.model.reset(); 
+
+				
+			}
+			
+		});
+		
 
 		gpsSwitch = (Switch) v.findViewById(R.id.GPS_button);
 		gpsSwitch.setOnClickListener(new OnClickListener() {

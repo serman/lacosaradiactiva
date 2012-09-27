@@ -39,16 +39,17 @@
 
     <application
         android:name=".MainApp"
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/icono"
         android:label="@string/app_name"
         android:theme="@style/themegeigercounter" >
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="sensor"
-            android:launchMode="singleInstance" >
+            android:launchMode="singleInstance"
+            android:screenOrientation="sensor" >
             <intent-filter>
                 <action android:name="android.hardware.usb.action.USB_ACCESSORY_ATTACHED" />
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
 
@@ -60,7 +61,6 @@
         </activity>
         <activity android:name=".maps.MyMapActivity" >
         </activity>
-      
         <activity
             android:name=".PreferencesActivity"
             android:screenOrientation="behind" >

@@ -27,6 +27,7 @@ import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.util.Log;
 
 import com.lacosaradioactiva.geiger.base.BaseActivity;
+import com.lacosaradioactiva.geiger.base.WebViewFragment;
 import com.lacosaradioactiva.geiger.data.DataRecorder;
 import com.lacosaradioactiva.geiger.data.GeigerModel;
 import com.lacosaradioactiva.geiger.data.Geoposition;
@@ -68,9 +69,7 @@ public class MainActivity extends BaseActivity implements Runnable, Observer {
 
 	// pachube & Red
 	private PachubeUpdate mPachube;
-	public boolean pachubeEnabled; 
-	
-
+	public boolean pachubeEnabled;
 
 	// View attributes
 
@@ -126,13 +125,21 @@ public class MainActivity extends BaseActivity implements Runnable, Observer {
 		});
 
 		List<Fragment> fragments = new Vector<Fragment>();
+
 		fragments.add(Fragment.instantiate(this, BootScreenFragment.class.getName()));
-		// fragments.add(Fragment.instantiate(this,
-		// WebViewFragment.class.getName()));
-		fragments.add(Fragment.instantiate(this, CounterFragment.class.getName()));
-		fragments.add(Fragment.instantiate(this, SettingsFragment.class.getName()));
-		//fragments.add(Fragment.instantiate(this, EmptyFragment.class.getName()));
-		//fragments.add(Fragment.instantiate(this, ProcessingSketch.class.getName()));
+		if (MainApp.MODE == MainApp.TABLET) {
+			fragments.add(Fragment.instantiate(this, WebViewFragment.class.getName()));
+			addProcessingSketch(new CameraFragment(), R.id.f1);
+			//addProcessingSketch(new ProcessingSketch(), R.id.f1);
+
+		} else if (MainApp.MODE == MainApp.PHONE) {
+			fragments.add(Fragment.instantiate(this, CounterFragment.class.getName()));
+			fragments.add(Fragment.instantiate(this, SettingsFragment.class.getName()));
+			// fragments.add(Fragment.instantiate(this,
+			// EmptyFragment.class.getName()));
+			// fragments.add(Fragment.instantiate(this,
+			// ProcessingSketch.class.getName()));
+		}
 
 		this.cpa = new MenuAdapter(super.getFragmentManager(), fragments);
 
@@ -140,9 +147,7 @@ public class MainActivity extends BaseActivity implements Runnable, Observer {
 		mViewPager.setAdapter(this.cpa);
 		// mViewPager.setCurrentItem(FIRST_ITEM);
 
-		// addProcessingSketch(new CameraFragment(), R.id.f1);
 		// addProcessingSketch(new VideoPlayerFragment(), R.id.f1);
-		// addProcessingSketch(new ProcessingSketch(), R.id.f1);
 
 		// proc = new ProcessingSketch();
 		// addProcessingSketchSide(proc, R.id.fragmentProcessing);
@@ -210,17 +215,23 @@ public class MainActivity extends BaseActivity implements Runnable, Observer {
 		}
 
 	}
-
+	
 	@Override
 	protected void onStop() {
 		Log.d(TAG, "onStop()");
 		super.onStop();
-	}
+	} 
 
 	@Override
 	protected void onPause() {
 		Log.d(TAG, "onPause()");
 		super.onPause();
+
+		if (state_recording) {
+			state_recording = false;
+			mRecorder.closeFile();
+			//rec.setText("record");
+		} 
 
 	}
 

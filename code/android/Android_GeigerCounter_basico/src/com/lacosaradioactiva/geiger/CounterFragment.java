@@ -146,11 +146,8 @@ public class CounterFragment extends Fragment {
 	public void onPause() {
 		Log.d(TAG, "onPause()");
 		super.onPause();
-		if (mContext.state_recording) {
-			mContext.state_recording = false;
-			mContext.mRecorder.closeFile();
-			rec.setText("record");
-		}
+	
+
 	}
 
 	@Override

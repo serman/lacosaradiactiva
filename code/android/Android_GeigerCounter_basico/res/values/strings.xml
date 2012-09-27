@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Geiger Counter</string>
+    <string name="app_name">La Cosa Radioactiva</string>
     <string name="microsievert_hour">uSv/h</string>
     <string name="counts_per_minute">cpm</string>
     <string name="record_button">Record</string>

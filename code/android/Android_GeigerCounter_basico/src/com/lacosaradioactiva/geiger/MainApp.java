@@ -16,7 +16,12 @@ public class MainApp extends MyApplication {
 
 	public static final String ROOT_FOLDER = Environment.getExternalStorageDirectory() + File.separator
 			+ "GeigerCounter" + File.separator;
-
+	
+	public  static final int PHONE = 0;
+	public static final int TABLET = 1;
+	//public static final int MODE = TABLET; 
+	public static final int MODE = PHONE; 
+	
 	@Override
 	public void onCreate() {
 		super.onCreate();

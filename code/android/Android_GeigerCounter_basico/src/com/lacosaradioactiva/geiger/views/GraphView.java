@@ -162,7 +162,7 @@ public class GraphView extends View {
 
 	//	int index = (int) mLastX;
 	//	totalValues[index] = values[0]; 
-		loadDemoValues(); 
+	//	loadDemoValues(); 
 		
 		invalidate();
 

@@ -38,9 +38,17 @@ public class OSC {
 			
 			@Override
 			public void oscEvent(OscMessage theOscMessage) {
-				if (theOscMessage.checkAddrPattern("/android") == true) {
+				if (theOscMessage.checkAddrPattern("/sensor") == true) {
 					
-					int MAX_SLIDERS = theOscMessage.get(0).intValue();
+					int sensorNum = theOscMessage.get(0).intValue();
+					int posX = theOscMessage.get(1).intValue();
+					int posY = theOscMessage.get(2).intValue();
+					int width = theOscMessage.get(3).intValue();
+					int height = theOscMessage.get(4).intValue();
+					float usvAvg = theOscMessage.get(5).intValue();
+					float usvMean = theOscMessage.get(6).intValue();
+					float lon = theOscMessage.get(7).floatValue();
+					float lat = theOscMessage.get(8).floatValue();
 					
 				}
 			}

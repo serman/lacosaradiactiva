@@ -1,0 +1,120 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<title>La Cosa Radiactiva</title> 
+
+  <script>
+      function loadUrl(url) {
+    	  document.getElementById('iframe').src = url;
+  }
+  </script>
+      
+      
+	<style type="text/css" media="screen">
+
+	#header {
+		width: 100%;
+		height: auto;
+		border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+		padding: 8px;
+		margin-bottom: 25px;
+		
+	}
+	
+	#content {
+		display: inline;
+	}
+	
+	#left {
+		height: 100%;
+		width: 700px;
+		float: left;
+	} 
+	
+	#right {
+		float: left;
+		display: block;
+	}
+	
+	iframe {
+		border: none; 
+		height: 100%; 
+		border-left: 1px solid rgba(0, 0, 0, 0.2);
+		padding-left: 25px;
+	}
+	
+	.element { 
+		width: 200px; 
+		height: 200px; 
+		/* border: 1px solid blue; */
+		float: left;
+		padding: 12px;			
+	} 
+	
+	.element img { 
+		width: 200px; 
+		height: 150px; 	
+		
+	} 
+	
+	.element h1 { 
+		font-family: sans-serif; 
+		font-size: 0.8em; 	
+		text-align: center;
+
+	} 
+
+	</style> 
+	
+</head>
+<body>
+
+<div id = "header"> 
+<img src = "./images/header.png" />
+</div> 
+
+<div id = "content">
+<div id = "left"> 
+
+
+<a class = "element" href="javascript:" onclick="loadUrl('./1.html');"> 
+<img src = "" /> 
+<h1> Place 1 </h1> 
+</a> 
+
+<a class = "element" href="javascript:" onclick="loadUrl('./static/2.html');"> 
+<img src = "" /> 
+<h1> Place 2 </h1> 
+</a> 
+
+<a class = "element" href="javascript:" onclick="loadUrl('./static/3.html');"> 
+<img src = "" /> 
+<h1> Place 3 </h1> 
+</a> 
+
+<a class = "element" href="javascript:" onclick="loadUrl('./static/4.html');"> 
+<img src = "" /> 
+<h1> Place 4 </h1> 
+</a> 
+
+<a class = "element" href="javascript:" onclick="loadUrl('./static/5.html');"> 
+<img src = "" /> 
+<h1> Place 5 </h1> 
+</a> 
+
+<a class = "element" href="javascript:" onclick="loadUrl('./static/6.html');"> 
+<img src = "" /> 
+<h1> Place 6 </h1> 
+</a> 
+
+
+</div>
+
+<div id = "right"> 
+<iframe id = "iframe" src = "./1.html" /> 
+</div> 
+
+</div> 
+
+</body>
+</html>

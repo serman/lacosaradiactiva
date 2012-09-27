@@ -1,12 +1,12 @@
 package com.lacosaradioactiva.geiger.base;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Picture;
 import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnCompletionListener;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -29,8 +29,9 @@ public class WebViewFragment extends Fragment {
 
 	private WebView mWebView;
 	private String uiPath;
-	// private String url = "file:/sdcard/Portfolio/_site/index.html";
-	private String url = "http://192.168.1.43:8081/static/livecoding/index.html#html,client";
+	//private String url = "file:/sdcard/Portfolio/_site/index.html";
+	private String url = "file:///android_asset/web.html";
+	//private String url = "http://192.168.1.43:8081/static/livecoding/index.html#html,client";
 	//private String url = "http://www.google.es";
 
 	public WebViewFragment() {
@@ -84,7 +85,7 @@ public class WebViewFragment extends Fragment {
 		//mWebView.setInitialScale(1);
 		mWebView.setFocusable(true);
 		mWebView.setFocusableInTouchMode(true);
-		mWebView.setBackgroundColor(0x00000000);
+		//mWebView.setBackgroundDrawable(android.R.color.transparent);
 		mWebView.addJavascriptInterface(new QQ(), "qq1"); 
 		mWebView.addJavascriptInterface(new QQ2(), "qq1"); 
 		mWebView.clearCache(false); 
@@ -95,6 +96,7 @@ public class WebViewFragment extends Fragment {
 	
 
 		mWebView.loadUrl(url);
+		mWebView.setBackgroundColor(0x11000000);
 
 		mWebView.requestFocus(View.FOCUS_DOWN);
 		mWebView.setOnTouchListener(new View.OnTouchListener() {
@@ -120,6 +122,13 @@ public class WebViewFragment extends Fragment {
 		
 	} 
 	
+	public void senToJavascript() { 
+		
+	    String qq = "qq2"; 
+	    
+		mWebView.loadUrl("javascript:callFromActivity(\""+ qq  +"\")");
+
+	}
 
 	final class QQ2 {
 		public QQ2() {
